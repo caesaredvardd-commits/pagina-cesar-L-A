@@ -21,10 +21,11 @@
         :root {
             --bg-primary: #02101b;
             --bg-elevated: #051828;
-            --bg-card: #081e30;
-            --text-main: #f4f6f8;
-            --text-muted: #9aa8b6;
-            --accent-line: rgba(255, 255, 255, 0.16);
+            --bg-card: #03131D;
+            --bg-card-deep: #071D29;
+            --text-main: #FFFFFF;
+            --text-muted: #AAB4BA;
+            --accent-line: rgba(170, 180, 186, 0.22);
             --accent-highlight: #c5a880;
             --font-din: 'LD-DIN', 'Barlow Condensed', 'DIN Alternate', sans-serif;
             --font-editorial: 'Cormorant Garamond', Georgia, serif;
@@ -50,6 +51,33 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* ANIMACIONES PRO */
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-70px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.96);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-hero {
+            animation: slideInLeft 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
         /* HEADER INTERACTIVO */
         header {
             position: fixed;
@@ -61,8 +89,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(2, 16, 27, 0.92);
-            backdrop-filter: blur(10px);
+            background-color: rgba(3, 19, 29, 0.94);
+            backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--accent-line);
             transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
         }
@@ -93,7 +121,7 @@
             line-height: 1.45;
             font-weight: 400;
             text-transform: uppercase;
-            color: var(--text-main);
+            color: var(--text-muted);
         }
 
         nav ul {
@@ -105,12 +133,17 @@
         nav a {
             position: relative;
             text-decoration: none;
-            color: var(--text-main);
+            color: var(--text-muted);
             font-size: 0.75rem;
             letter-spacing: 0.18em;
             text-transform: uppercase;
             padding-bottom: 6px;
             transition: color 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: var(--text-main);
         }
 
         nav a::after {
@@ -120,7 +153,7 @@
             bottom: 0;
             width: 100%;
             height: 1px;
-            background-color: var(--text-main);
+            background-color: var(--accent-highlight);
             transform: scaleX(0);
             transform-origin: left center;
             transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
@@ -131,7 +164,7 @@
             transform: scaleX(1);
         }
 
-        /* EFECTO SCROLL SUPERPUESTO (ESTILO SAINT LAURENT) */
+        /* EFECTO SCROLL SUPERPUESTO (ACTIVO EN TODAS LAS PANTALLAS) */
         .stack-wrapper {
             position: relative;
             width: 100%;
@@ -144,18 +177,19 @@
             width: 100%;
             background-color: var(--bg-primary);
             border-top: 1px solid var(--accent-line);
-            box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.65);
+            box-shadow: 0 -25px 60px rgba(2, 16, 27, 0.85);
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding: 7rem 8% 5rem;
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            animation: fadeInScale 0.8s ease-out;
         }
 
-        #inicio { z-index: 1; border-top: none; box-shadow: none; }
-        #fundador { z-index: 2; background-color: #031320; }
+        #inicio { z-index: 1; border-top: none; box-shadow: none; background-color: #02101b; }
+        #fundador { z-index: 2; background-color: var(--bg-card); }
         #nosotros { z-index: 3; background-color: var(--bg-primary); }
-        #servicios { z-index: 4; background-color: #031422; }
+        #servicios { z-index: 4; background-color: var(--bg-card-deep); }
         #portafolio { z-index: 5; background-color: var(--bg-primary); }
         #contacto { z-index: 6; background-color: #020d16; position: relative; }
 
@@ -190,7 +224,8 @@
             align-items: center;
             gap: 1rem;
             padding: 1rem 1.8rem;
-            border: 1px solid rgba(255, 255, 255, 0.35);
+            border: 1px solid var(--accent-line);
+            background-color: var(--bg-card-deep);
             color: var(--text-main);
             text-decoration: none;
             font-size: 0.75rem;
@@ -203,6 +238,7 @@
             background-color: var(--text-main);
             color: var(--bg-primary);
             border-color: var(--text-main);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
         }
 
         .scroll-indicator {
@@ -223,10 +259,10 @@
             display: block;
             width: 1px;
             height: 36px;
-            background-color: rgba(255, 255, 255, 0.35);
+            background-color: var(--accent-line);
         }
 
-        /* FUNDADOR */
+        /* FUNDADOR (FONDO DIFUMINADO Y SIN BORDE) */
         .founder-section {
             align-items: center;
             text-align: center;
@@ -237,8 +273,20 @@
             width: min(380px, 85vw);
             margin: 0 auto;
             padding: 1.2rem;
-            background: linear-gradient(145deg, #071d30 0%, #020c14 100%);
-            border: 1px solid var(--accent-line);
+            background: transparent;
+            border: none;
+            overflow: hidden;
+        }
+
+        /* Fondo difuminado basado en la misma imagen */
+        .founder-frame::before {
+            content: '';
+            position: absolute;
+            inset: -25px;
+            background: url('L&A/fundador.jpg') center/cover no-repeat;
+            filter: blur(14px) brightness(0.35);
+            z-index: 0;
+            transform: scale(1.15);
         }
 
         .founder-image-wrapper {
@@ -247,6 +295,8 @@
             aspect-ratio: 3 / 4;
             overflow: hidden;
             background-color: #010a12;
+            z-index: 1;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
         }
 
         .founder-image-wrapper img {
@@ -264,12 +314,13 @@
         .founder-caption-box {
             margin-top: -1.6rem;
             position: relative;
-            z-index: 2;
-            background-color: #010910;
+            z-index: 3;
+            background-color: var(--bg-card);
             border: 1px solid var(--accent-line);
             padding: 1.1rem 2rem;
             display: inline-block;
             min-width: 240px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
         }
 
         .founder-role {
@@ -301,7 +352,7 @@
         .editorial-header .top-rule {
             width: 48px;
             height: 1px;
-            background-color: var(--text-main);
+            background-color: var(--accent-highlight);
             margin: 0 auto 1.2rem;
         }
 
@@ -352,13 +403,17 @@
         .editorial-metric-box {
             border-left: 1px solid var(--accent-line);
             padding-left: 3rem;
+            background: linear-gradient(135deg, rgba(7, 29, 41, 0.4), transparent);
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-radius: 4px;
         }
 
         .metric-big {
             font-family: var(--font-editorial);
             font-size: 3.4rem;
             line-height: 1;
-            color: var(--text-main);
+            color: var(--accent-highlight);
             margin-bottom: 0.6rem;
         }
 
@@ -390,7 +445,8 @@
             width: 34px;
             height: 34px;
             border-radius: 50%;
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            border: 1px solid var(--accent-line);
+            background-color: var(--bg-card);
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -419,12 +475,22 @@
         .service-item {
             border-top: 1px solid var(--accent-line);
             padding-top: 1.8rem;
+            background-color: rgba(3, 19, 29, 0.5);
+            padding: 1.8rem;
+            border-radius: 4px;
+            border: 1px solid var(--accent-line);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .service-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-highlight);
         }
 
         .service-num {
             font-size: 0.72rem;
             letter-spacing: 0.2em;
-            color: var(--text-muted);
+            color: var(--accent-highlight);
             display: block;
             margin-bottom: 0.9rem;
         }
@@ -461,14 +527,16 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.25rem 0;
+            padding: 1.25rem 0.8rem;
             border-bottom: 1px solid var(--accent-line);
-            transition: padding-left 0.3s ease, border-color 0.3s ease;
+            transition: padding-left 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+            border-radius: 2px;
         }
 
         .portfolio-row:hover {
-            padding-left: 0.6rem;
-            border-bottom-color: rgba(255, 255, 255, 0.5);
+            padding-left: 1.2rem;
+            border-bottom-color: var(--accent-highlight);
+            background-color: rgba(7, 29, 41, 0.3);
         }
 
         .portfolio-row span:first-child {
@@ -480,7 +548,7 @@
         .portfolio-row span:last-child {
             font-size: 0.72rem;
             letter-spacing: 0.16em;
-            color: var(--text-muted);
+            color: var(--accent-highlight);
         }
 
         /* CONTACTO */
@@ -509,7 +577,7 @@
             content: '';
             width: 48px;
             height: 1px;
-            background-color: var(--text-main);
+            background-color: var(--accent-highlight);
         }
 
         .contact-heading {
@@ -542,35 +610,41 @@
         }
 
         .company-details a {
-            color: var(--text-main);
+            color: var(--accent-highlight);
             text-decoration: none;
             border-bottom: 1px solid transparent;
             transition: border-color 0.3s ease;
         }
 
         .company-details a:hover {
-            border-bottom-color: var(--text-main);
+            border-bottom-color: var(--accent-highlight);
         }
 
         .contact-form {
             display: flex;
             flex-direction: column;
             gap: 1.1rem;
+            background-color: var(--bg-card);
+            padding: 2.5rem;
+            border-radius: 6px;
+            border: 1px solid var(--accent-line);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .form-field input,
         .form-field select,
         .form-field textarea {
             width: 100%;
-            background-color: var(--bg-card);
+            background-color: var(--bg-primary);
             border: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+            border-bottom: 1px solid var(--accent-line);
             padding: 1.1rem 1rem;
             color: var(--text-main);
             font-family: var(--font-sans);
             font-size: 0.9rem;
             outline: none;
             transition: border-color 0.3s ease, background-color 0.3s ease;
+            border-radius: 2px;
         }
 
         .form-field input::placeholder,
@@ -581,8 +655,8 @@
         .form-field input:focus,
         .form-field select:focus,
         .form-field textarea:focus {
-            background-color: #0b263d;
-            border-bottom-color: var(--text-main);
+            background-color: var(--bg-card-deep);
+            border-bottom-color: var(--accent-highlight);
         }
 
         .form-field select {
@@ -607,7 +681,7 @@
 
         .consent-row input[type="checkbox"] {
             margin-top: 0.2rem;
-            accent-color: var(--text-main);
+            accent-color: var(--accent-highlight);
             width: 15px;
             height: 15px;
             cursor: pointer;
@@ -616,8 +690,8 @@
         .submit-btn {
             margin-top: 0.8rem;
             padding: 1.1rem 2rem;
-            background-color: transparent;
-            border: 1px solid var(--text-main);
+            background-color: var(--bg-card-deep);
+            border: 1px solid var(--accent-line);
             color: var(--text-main);
             font-size: 0.75rem;
             letter-spacing: 0.22em;
@@ -625,11 +699,13 @@
             cursor: pointer;
             transition: all 0.35s ease;
             align-self: flex-start;
+            border-radius: 2px;
         }
 
         .submit-btn:hover {
-            background-color: var(--text-main);
+            background-color: var(--accent-highlight);
             color: var(--bg-primary);
+            border-color: var(--accent-highlight);
         }
 
         .form-status {
@@ -655,12 +731,9 @@
         /* TABLETS Y PANTALLAS MEDIANAS */
         @media (max-width: 1024px) {
             .stack-panel {
-                position: relative;
-                min-height: auto;
-                padding: 7.5rem 6% 5rem;
-            }
-            #inicio {
+                position: sticky; /* Mantiene el efecto de superposición en tablets y celulares */
                 min-height: 100vh;
+                padding: 7.5rem 6% 5rem;
             }
             .editorial-grid-2col,
             .contact-container {
@@ -704,8 +777,8 @@
                 letter-spacing: 0.14em;
             }
             .stack-panel {
-                position: relative;
-                min-height: auto;
+                position: sticky; /* Efecto de superposición habilitado en móviles */
+                min-height: 100vh;
                 padding: 7rem 6% 4rem;
             }
             #inicio {
@@ -780,7 +853,7 @@
 
         <!-- 1. INICIO -->
         <section id="inicio" class="stack-panel">
-            <div class="hero-content">
+            <div class="hero-content animate-hero">
                 <h1 class="hero-title">Estrategia para<br>grandes oportunidades.</h1>
                 <p class="hero-subtitle">
                     Asesoría financiera, levantamiento de capital y soluciones estratégicas para empresas.
