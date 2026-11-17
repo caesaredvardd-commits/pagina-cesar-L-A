@@ -85,15 +85,17 @@
             }
         }
 
+        /* 2. DURACIÓN EXTENDIDA EN EL TÍTULO DE INICIO */
         .animate-hero {
-            animation: slideInLeft 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: slideInLeft 3.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Clase para animar desde la derecha al hacer scroll */
+        /* 3. CLASE PARA ANIMAR SUAVEMENTE DE DERECHA A IZQUIERDA */
         .reveal-right {
             opacity: 0;
-            transform: translateX(80px);
-            transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateX(70px);
+            transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
         }
 
         .reveal-right.active {
@@ -207,23 +209,25 @@
             padding: 7rem 8% 5rem;
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             animation: fadeInScale 0.8s ease-out;
+            overflow-x: hidden;
         }
 
         #inicio { z-index: 1; border-top: none; box-shadow: none; background-color: #02101b; }
         
-        /* FUNDADOR: TODO EL FONDO ES LA IMAGEN DIFUMINADA Y OSCURECIDA */
+        /* 1. FUNDADOR: TODO EL FONDO ES LA IMAGEN DIFUMINADA Y OSCURECIDA */
         #fundador { 
             z-index: 2; 
             position: sticky;
-            background: url('L&A/fundador.jpg') center/cover no-repeat;
+            background-color: #0b0b0b;
             overflow: hidden;
         }
         #fundador::before {
             content: '';
             position: absolute;
             inset: 0;
-            background-color: rgba(2, 16, 27, 0.82);
-            backdrop-filter: blur(18px);
+            background: url('L&A/fundador.jpg') center/cover no-repeat;
+            filter: blur(18px) brightness(0.42);
+            transform: scale(1.08);
             z-index: 0;
         }
         #fundador > * {
@@ -1117,6 +1121,7 @@
 
             lastScrollY = currentScrollY;
             updateActiveNav();
+            triggerSectionAnimations();
         }, { passive: true });
 
         const sections = document.querySelectorAll('section[id]');
@@ -1139,23 +1144,23 @@
             });
         }
 
-        // Observer para activar las animaciones de derecha a izquierda al hacer scroll
-        const observerOptions = {
-            root: null,
-            threshold: 0.15
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
+        // 3. ACTIVAR ANIMACIÓN DE DERECHA A IZQUIERDA AL LLEGAR A CADA SECCIÓN
+        function triggerSectionAnimations() {
+            const windowHeight = window.innerHeight;
+            sections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= windowHeight * 0.72) {
+                    const revealElements = section.querySelectorAll('.reveal-right');
+                    revealElements.forEach((el, index) => {
+                        setTimeout(() => {
+                            el.classList.add('active');
+                        }, index * 160);
+                    });
                 }
             });
-        }, observerOptions);
+        }
 
-        document.querySelectorAll('.reveal-right').forEach(el => {
-            observer.observe(el);
-        });
+        window.addEventListener('load', triggerSectionAnimations);
 
         const contactForm = document.getElementById('contactForm');
         const formStatus = document.getElementById('formStatus');
