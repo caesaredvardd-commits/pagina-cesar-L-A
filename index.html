@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L&A Consulting Group, S.A.</title>
+    
+    <!-- Tipografías -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        @font-face {
+            font-family: 'LD-DIN';
+            src: local('LD-DIN Bold'), local('LD-DIN-Bold'), local('LD-DIN Condensed Bold');
+            font-weight: 700;
+            font-style: normal;
+        }
+
+        :root {
+            --bg-primary: #02101b;
+            --bg-elevated: #051828;
+            --bg-card: #081e30;
+            --text-main: #f4f6f8;
+            --text-muted: #9aa8b6;
+            --accent-line: rgba(255, 255, 255, 0.16);
+            --accent-highlight: #c5a880;
+            --font-din: 'LD-DIN', 'Barlow Condensed', 'DIN Alternate', sans-serif;
+            --font-editorial: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* HEADER INTERACTIVO */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.4rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(2, 16, 27, 0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--accent-line);
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
+        }
+
+        header.header-hidden {
+            transform: translateY(-100%);
+        }
+
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .brand-container img {
+            height: 44px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .brand-title {
+            display: flex;
+            flex-direction: column;
+            font-size: 0.72rem;
+            letter-spacing: 0.24em;
+            line-height: 1.45;
+            font-weight: 400;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2.6rem;
+        }
+
+        nav a {
+            position: relative;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.75rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            padding-bottom: 6px;
+            transition: color 0.3s ease;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--text-main);
+            transform: scaleX(0);
+            transform-origin: left center;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        nav a:hover::after,
+        nav a.active::after {
+            transform: scaleX(1);
+        }
+
+        /* EFECTO SCROLL SUPERPUESTO (ESTILO SAINT LAURENT) */
+        .stack-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .stack-panel {
+            position: sticky;
+            top: 0;
+            min-height: 100vh;
+            width: 100%;
+            background-color: var(--bg-primary);
+            border-top: 1px solid var(--accent-line);
+            box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.65);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 7rem 8% 5rem;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #inicio { z-index: 1; border-top: none; box-shadow: none; }
+        #fundador { z-index: 2; background-color: #031320; }
+        #nosotros { z-index: 3; background-color: var(--bg-primary); }
+        #servicios { z-index: 4; background-color: #031422; }
+        #portafolio { z-index: 5; background-color: var(--bg-primary); }
+        #contacto { z-index: 6; background-color: #020d16; position: relative; }
+
+        /* INICIO */
+        .hero-content {
+            max-width: 920px;
+            margin-top: 2rem;
+        }
+
+        .hero-title {
+            font-family: var(--font-din);
+            font-weight: 700;
+            font-size: clamp(3rem, 6.2vw, 5.4rem);
+            line-height: 1.04;
+            letter-spacing: 0.01em;
+            text-transform: uppercase;
+            color: var(--text-main);
+            margin-bottom: 1.6rem;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 1.4vw, 1.2rem);
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.65;
+            max-width: 600px;
+            margin-bottom: 2.8rem;
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: all 0.35s ease;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--text-main);
+            color: var(--bg-primary);
+            border-color: var(--text-main);
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2.5rem;
+            left: 8%;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.35);
+        }
+
+        /* FUNDADOR */
+        .founder-section {
+            align-items: center;
+            text-align: center;
+        }
+
+        .founder-frame {
+            position: relative;
+            width: min(380px, 85vw);
+            margin: 0 auto;
+            padding: 1.2rem;
+            background: linear-gradient(145deg, #071d30 0%, #020c14 100%);
+            border: 1px solid var(--accent-line);
+        }
+
+        .founder-image-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            background-color: #010a12;
+        }
+
+        .founder-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.04);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .founder-frame:hover .founder-image-wrapper img {
+            transform: scale(1.03);
+        }
+
+        .founder-caption-box {
+            margin-top: -1.6rem;
+            position: relative;
+            z-index: 2;
+            background-color: #010910;
+            border: 1px solid var(--accent-line);
+            padding: 1.1rem 2rem;
+            display: inline-block;
+            min-width: 240px;
+        }
+
+        .founder-role {
+            display: block;
+            font-family: var(--font-editorial);
+            font-style: italic;
+            font-size: 1.75rem;
+            letter-spacing: 0.04em;
+            color: var(--text-main);
+            line-height: 1.1;
+        }
+
+        .founder-name {
+            display: block;
+            margin-top: 0.45rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
+
+        /* ESTILOS EDITORIALES (NOSOTROS) */
+        .editorial-header {
+            text-align: center;
+            margin-bottom: 4.5rem;
+        }
+
+        .editorial-header .top-rule {
+            width: 48px;
+            height: 1px;
+            background-color: var(--text-main);
+            margin: 0 auto 1.2rem;
+        }
+
+        .editorial-kicker {
+            font-size: 0.72rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .editorial-main-title {
+            font-family: var(--font-editorial);
+            font-weight: 400;
+            font-size: clamp(2.4rem, 4.2vw, 3.6rem);
+            color: var(--text-main);
+            line-height: 1.15;
+        }
+
+        .editorial-grid-2col {
+            display: grid;
+            grid-template-columns: 1.25fr 0.85fr;
+            gap: 5rem;
+            max-width: 1180px;
+            margin: 0 auto;
+            align-items: start;
+        }
+
+        .editorial-lead {
+            font-size: 1.35rem;
+            font-weight: 300;
+            color: var(--text-main);
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .editorial-body p {
+            font-size: 0.98rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 1.3rem;
+            font-weight: 300;
+        }
+
+        .editorial-metric-box {
+            border-left: 1px solid var(--accent-line);
+            padding-left: 3rem;
+        }
+
+        .metric-big {
+            font-family: var(--font-editorial);
+            font-size: 3.4rem;
+            line-height: 1;
+            color: var(--text-main);
+            margin-bottom: 0.6rem;
+        }
+
+        .metric-label {
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: var(--text-main);
+            margin-bottom: 0.8rem;
+        }
+
+        .metric-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .circle-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.9rem;
+            margin-top: 1.5rem;
+            text-decoration: none;
+            color: var(--text-main);
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+        }
+
+        .circle-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .circle-link:hover .circle-icon {
+            background-color: var(--text-main);
+            color: var(--bg-primary);
+            transform: translateX(4px);
+        }
+
+        /* SERVICIOS */
+        .services-container {
+            max-width: 1180px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+        }
+
+        .service-item {
+            border-top: 1px solid var(--accent-line);
+            padding-top: 1.8rem;
+        }
+
+        .service-num {
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 0.9rem;
+        }
+
+        .service-item h3 {
+            font-family: var(--font-editorial);
+            font-size: 1.65rem;
+            font-weight: 400;
+            margin-bottom: 0.9rem;
+            color: var(--text-main);
+        }
+
+        .service-item p {
+            font-size: 0.92rem;
+            line-height: 1.7;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        /* PORTAFOLIO */
+        .portfolio-container {
+            max-width: 1180px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .portfolio-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 4rem;
+        }
+
+        .portfolio-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--accent-line);
+            transition: padding-left 0.3s ease, border-color 0.3s ease;
+        }
+
+        .portfolio-row:hover {
+            padding-left: 0.6rem;
+            border-bottom-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .portfolio-row span:first-child {
+            font-size: 1.05rem;
+            font-weight: 300;
+            color: var(--text-main);
+        }
+
+        .portfolio-row span:last-child {
+            font-size: 0.72rem;
+            letter-spacing: 0.16em;
+            color: var(--text-muted);
+        }
+
+        /* CONTACTO */
+        .contact-container {
+            max-width: 1180px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 5rem;
+            align-items: start;
+        }
+
+        .kicker-inline {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            font-size: 0.72rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .kicker-inline::after {
+            content: '';
+            width: 48px;
+            height: 1px;
+            background-color: var(--text-main);
+        }
+
+        .contact-heading {
+            font-family: var(--font-editorial);
+            font-size: clamp(2.3rem, 3.8vw, 3.3rem);
+            font-weight: 400;
+            line-height: 1.15;
+            margin-bottom: 2.5rem;
+        }
+
+        .company-details {
+            border-top: 1px solid var(--accent-line);
+            padding-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            font-weight: 300;
+        }
+
+        .company-details strong {
+            color: var(--text-main);
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .company-details a {
+            color: var(--text-main);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .company-details a:hover {
+            border-bottom-color: var(--text-main);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+        }
+
+        .form-field input,
+        .form-field select,
+        .form-field textarea {
+            width: 100%;
+            background-color: var(--bg-card);
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+            padding: 1.1rem 1rem;
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .form-field input::placeholder,
+        .form-field textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-field input:focus,
+        .form-field select:focus,
+        .form-field textarea:focus {
+            background-color: #0b263d;
+            border-bottom-color: var(--text-main);
+        }
+
+        .form-field select {
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .form-field select option {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+        }
+
+        .consent-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.85rem;
+            margin-top: 0.4rem;
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .consent-row input[type="checkbox"] {
+            margin-top: 0.2rem;
+            accent-color: var(--text-main);
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            margin-top: 0.8rem;
+            padding: 1.1rem 2rem;
+            background-color: transparent;
+            border: 1px solid var(--text-main);
+            color: var(--text-main);
+            font-size: 0.75rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.35s ease;
+            align-self: flex-start;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--text-main);
+            color: var(--bg-primary);
+        }
+
+        .form-status {
+            font-size: 0.85rem;
+            color: var(--accent-highlight);
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        footer {
+            background-color: #010910;
+            border-top: 1px solid var(--accent-line);
+            padding: 2rem 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            position: relative;
+            z-index: 10;
+        }
+
+        @media (max-width: 960px) {
+            .editorial-grid-2col,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .editorial-metric-box {
+                border-left: none;
+                border-top: 1px solid var(--accent-line);
+                padding-left: 0;
+                padding-top: 2rem;
+            }
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .portfolio-list {
+                grid-template-columns: 1fr;
+            }
+            nav ul {
+                gap: 1.2rem;
+            }
+        }
+
+        @media (max-width: 680px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 5%;
+            }
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            .stack-panel {
+                position: relative;
+                padding: 6rem 6% 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ENCABEZADO INTERACTIVO -->
+    <header id="mainHeader">
+        <a href="#inicio" class="brand-container">
+            <img src="L&A/logo para pagina L&A sdsd.png" alt="Logo L&A Consulting Group">
+            <div class="brand-title">
+                <span>LA CONSULTING</span>
+                <span>GROUP, SA</span>
+            </div>
+        </a>
+
+        <nav>
+            <ul>
+                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="stack-wrapper">
+
+        <!-- 1. INICIO -->
+        <section id="inicio" class="stack-panel">
+            <div class="hero-content">
+                <h1 class="hero-title">Estrategia para<br>grandes oportunidades.</h1>
+                <p class="hero-subtitle">
+                    Asesoría financiera, levantamiento de capital y soluciones estratégicas para empresas.
+                </p>
+                <a href="#servicios" class="btn-outline">
+                    Conoce nuestros servicios <span>&rarr;</span>
+                </a>
+            </div>
+            <div class="scroll-indicator">Desplaza para explorar</div>
+        </section>
+
+        <!-- 2. FUNDADOR -->
+        <section id="fundador" class="stack-panel founder-section">
+            <div class="founder-frame">
+                <div class="founder-image-wrapper">
+                    <img src="L&A/César Abril2.jpg" alt="César Abril - Fundador">
+                </div>
+                <div class="founder-caption-box">
+                    <span class="founder-role">Fundador</span>
+                    <span class="founder-name">César Abril &mdash; CEO</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. NOSOTROS -->
+        <section id="nosotros" class="stack-panel">
+            <div class="editorial-header">
+                <div class="top-rule"></div>
+                <span class="editorial-kicker">Quiénes Somos</span>
+                <h2 class="editorial-main-title">Respaldo financiero con visión estratégica</h2>
+            </div>
+
+            <div class="editorial-grid-2col">
+                <div class="editorial-body">
+                    <p class="editorial-lead">Solidez y flexibilidad estructurada</p>
+                    <p>
+                        Somos una empresa dedicada al levantamiento de capitales para todo tipo de industria, gestionando diferentes formas de apoyo financiero, basándonos en nuestra experiencia, análisis de riesgo y evaluación de proyectos[cite: 11].
+                    </p>
+                    <p>
+                        Somos una empresa muy flexible que busca alternativas para nuestros clientes a nivel financiero: préstamos, inversión, fusiones, adquisiciones, reestructuración de deuda[cite: 11].
+                    </p>
+                    <p>
+                        Contamos con una amplia cartera de empresas inversoras, así también como una cartera de empresas que requieren apalancamiento financiero[cite: 11].
+                    </p>
+                    <a href="#portafolio" class="circle-link">
+                        <span>Explorar portafolio</span>
+                        <span class="circle-icon">&rarr;</span>
+                    </a>
+                </div>
+
+                <div class="editorial-metric-box">
+                    <div class="metric-big">360&deg;</div>
+                    <div class="metric-label">Gestión Integral de Capital</div>
+                    <p class="metric-note">
+                        Conectamos proyectos estructurados con capital institucional y privado mediante análisis riguroso de riesgo, evaluación financiera y acompañamiento ejecutivo en cada etapa.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SERVICIOS -->
+        <section id="servicios" class="stack-panel">
+            <div class="services-container">
+                <div class="editorial-header">
+                    <div class="top-rule"></div>
+                    <span class="editorial-kicker">Nuestras Soluciones</span>
+                    <h2 class="editorial-main-title">Áreas de Especialización</h2>
+                </div>
+
+                <div class="services-grid">
+                    <div class="service-item">
+                        <span class="service-num">01 / CAPITAL</span>
+                        <h3>Levantamiento y Apalancamiento</h3>
+                        <p>Estructuración de financiamiento corporativo, préstamos fiduciarios e hipotecarios, y vinculación directa con nuestra cartera de inversionistas[cite: 11].</p>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-num">02 / ESTRATEGIA</span>
+                        <h3>Fusiones, Adquisiciones y Deuda</h3>
+                        <p>Diseño de alternativas financieras a la medida, procesos de M&A, monetización de activos y reestructuración eficiente de pasivos empresariales[cite: 11].</p>
+                    </div>
+                    <div class="service-item">
+                        <span class="service-num">03 / ANÁLISIS</span>
+                        <h3>Evaluación y Riesgo</h3>
+                        <p>Estudios de factibilidad, análisis de mercado, calificación de cartera, administración de desarrollos inmobiliarios y control de tesorería[cite: 12].</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. PORTAFOLIO -->
+        <section id="portafolio" class="stack-panel">
+            <div class="portfolio-container">
+                <div class="editorial-header">
+                    <div class="top-rule"></div>
+                    <span class="editorial-kicker">Portafolio</span>
+                    <h2 class="editorial-main-title">Servicios y Capacidades</h2>
+                </div>
+
+                <div class="portfolio-list">
+                    <div class="portfolio-row">
+                        <span>Asesoría Financiera</span>
+                        <span>01</span>
+                    </div>
+                    <div class="portfolio-row">
+                        <span>Registros Contables</span>
+                        <span>02</span>
+                    </div>
+                    <div class="portfolio-row">
+                        <span>Administración de Desarrollos Inmobiliarios</span>
+                        <span>03</span>
+                    </div>
+                    <div class="portfolio-row">
+                        <span>Préstamos (fiduciarios e hipotecarios)</span>
+                        <span>04</span>
+                    </div>
+                    <div class="portfolio-row">
+                        <span>Inversiones</span>
+                        <span>05</span>
+                    </div>
+                    <div class="portfolio-row">
+                        <span>Estudios de Mercado</span>
+                        <span>06</span>
+                    </div>
+                    <div class="portfolio-row">
+                        <span>Estudios de Factibilidad y Análisis de Riesgo</span>
+                        <span>07</span>
+                    </div>
+                    <div class="portfolio-row">
+                        <span>Monetización de Activos</span>
+                        <span>08</span>
+                    </div>
+                    <div class="portfolio-row">
+                        <span>Prospección y Calificación de Cartera</span>
+                        <span>09</span>
+                    </div>
+                    <div class="portfolio-row">
+                        <span>Levantamiento de Capital</span>
+                        <span>10</span>
+                    </div>
+                    <div class="portfolio-row">
+                        <span>Tesorería</span>
+                        <span>11</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CONTACTO -->
+        <section id="contacto" class="stack-panel">
+            <div class="contact-container">
+                <div>
+                    <div class="kicker-inline">Contacto</div>
+                    <h2 class="contact-heading">Inicie una conversación estratégica con nuestra firma.</h2>
+
+                    <div class="company-details">
+                        <strong>L&amp;A Consulting Group, S.A.</strong>
+                        <span>César Abril &mdash; CEO</span>
+                        <span>Tel: <a href="tel:+50248726808">(502) 4872-6808</a></span>
+                        <span>Correo: <a href="mailto:cesarabril72@icloud.com">cesarabril72@icloud.com</a></span>
+                        <span>Dirección: 4ta. calle 48-48 zona 2 de Mixco, Guatemala C.A.</span>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-field">
+                        <input type="email" id="email" name="email" placeholder="Correo electrónico *" required>
+                    </div>
+                    <div class="form-field">
+                        <input type="text" id="firstName" name="firstName" placeholder="Nombre *" required>
+                    </div>
+                    <div class="form-field">
+                        <input type="text" id="lastName" name="lastName" placeholder="Apellido *" required>
+                    </div>
+                    <div class="form-field">
+                        <input type="text" id="company" name="company" placeholder="Empresa">
+                    </div>
+                    <div class="form-field">
+                        <input type="text" id="jobTitle" name="jobTitle" placeholder="Cargo / Puesto">
+                    </div>
+                    <div class="form-field">
+                        <select id="serviceInterest" name="serviceInterest" required>
+                            <option value="" disabled selected>Área de interés *</option>
+                            <option value="Levantamiento de Capital">Levantamiento de Capital</option>
+                            <option value="Asesoría Financiera">Asesoría Financiera</option>
+                            <option value="Préstamos (Fiduciarios e Hipotecarios)">Préstamos (Fiduciarios e Hipotecarios)</option>
+                            <option value="Inversiones">Inversiones</option>
+                            <option value="Administración de Desarrollos Inmobiliarios">Administración de Desarrollos Inmobiliarios</option>
+                            <option value="Estudios de Factibilidad y Análisis de Riesgo">Estudios de Factibilidad y Análisis de Riesgo</option>
+                            <option value="Monetización de Activos">Monetización de Activos</option>
+                            <option value="Otros servicios">Otros servicios del portafolio</option>
+                        </select>
+                    </div>
+                    <div class="form-field">
+                        <textarea id="message" name="message" rows="3" placeholder="Breve descripción de su requerimiento"></textarea>
+                    </div>
+
+                    <label class="consent-row">
+                        <input type="checkbox" required>
+                        <span>Al enviar esta solicitud, autorizo a L&amp;A Consulting Group, S.A. a contactarme respecto a mi consulta financiera.</span>
+                    </label>
+
+                    <button type="submit" class="submit-btn">Enviar solicitud</button>
+                    <p class="form-status" id="formStatus">Abriendo cliente de correo para enviar su consulta a cesarabril72@icloud.com...</p>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <span>&copy; 2026 L&amp;A Consulting Group, S.A. Todos los derechos reservados.</span>
+        <span>Guatemala, C.A.</span>
+    </footer>
+
+    <script>
+        const header = document.getElementById('mainHeader');
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY <= 50) {
+                header.classList.remove('header-hidden');
+            } else if (currentScrollY > lastScrollY) {
+                header.classList.add('header-hidden');
+            } else {
+                header.classList.remove('header-hidden');
+            }
+
+            lastScrollY = currentScrollY;
+            updateActiveNav();
+        }, { passive: true });
+
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function updateActiveNav() {
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 180;
+                if (window.scrollY >= sectionTop) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        const contentForm = document.getElementById('contactForm');
+        const formStatus = document.getElementById('formStatus');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value.trim();
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const company = document.getElementById('company').value.trim() || 'No especificada';
+            const jobTitle = document.getElementById('jobTitle').value.trim() || 'No especificado';
+            const service = document.getElementById('serviceInterest').value;
+            const message = document.getElementById('message').value.trim() || 'Sin comentarios adicionales.';
+
+            const subject = encodeURIComponent(`Consulta Web L&A Consulting: ${service} - ${firstName} ${lastName}`);
+            const body = encodeURIComponent(
+                `Nueva solicitud desde el sitio web de L&A Consulting Group, S.A.\n\n` +
+                `Nombre: ${firstName} ${lastName}\n` +
+                `Correo: ${email}\n` +
+                `Empresa: ${company}\n` +
+                `Cargo: ${jobTitle}\n` +
+                `Área de interés: ${service}\n\n` +
+                `Mensaje:\n${message}`
+            );
+
+            formStatus.style.display = 'block';
+            window.location.href = `mailto:cesarabril72@icloud.com?subject=${subject}&body=${body}`;
+        });
+    </script>
+</body>
+</html>
