@@ -48,7 +48,7 @@
 
         body {
             background-color: var(--bg-primary);
-            overflow-x: hidden;
+            overflow-x: clip;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -207,23 +207,22 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 8rem 8% 6.5rem;
+            padding: 6.2rem 8% 4.5rem;
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             animation: fadeInScale 0.8s ease-out;
-            overflow-x: hidden;
         }
 
-        /* INICIO CON FONDO FONDOINICIO Y MARCO CENTRADO */
+        /* INICIO CON FONDO FONDOINICIO Y MARCO AL LADO IZQUIERDO */
         #inicio { 
             z-index: 1; 
             border-top: none; 
             box-shadow: none; 
             background: url('L&A/fondoinicio.jpg') center/cover no-repeat;
-            position: relative;
-            align-items: center;
+            position: sticky;
+            align-items: flex-start;
             justify-content: center;
-            text-align: center;
-            padding-top: 9rem;
+            text-align: left;
+            padding-top: 8rem;
             padding-bottom: 4rem;
         }
         #inicio::before {
@@ -243,19 +242,19 @@
             padding: 3.5rem 4rem;
             background: rgba(2, 16, 27, 0.35);
             backdrop-filter: blur(6px);
-            max-width: 900px;
+            max-width: 960px;
             width: 100%;
-            margin: 0 auto;
+            margin: 0;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
             border-radius: 2px;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
         }
 
-        /* 1. FLECHA CENTRADA JUSTO DEBAJO DEL RECUADRO Y APUNTANDO HACIA ABAJO */
+        /* 1. FLECHA JUSTO DEBAJO DEL RECUADRO Y APUNTANDO HACIA ABAJO */
         .scroll-down-indicator {
-            margin: 2.2rem auto 0;
+            margin: 2rem 0 0 1.5rem;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -299,24 +298,25 @@
 
         /* INICIO */
         .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 100%;
+            margin: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
+            align-items: flex-start;
         }
 
-        /* 2. TÍTULO CON TIPOGRAFÍA DM SANS SOBRIA Y ELEGANTE */
+        /* 2. TÍTULO CON TIPOGRAFÍA DM SANS SOBRIA Y ELEGANTE EN UNA LÍNEA */
         .hero-title {
             font-family: var(--font-dm);
             font-weight: 700;
-            font-size: clamp(2.1rem, 4.2vw, 3.6rem);
+            font-size: clamp(1.9rem, 3.4vw, 3.1rem);
             line-height: 1.15;
-            letter-spacing: 0.04em;
+            letter-spacing: 0.03em;
             text-transform: uppercase;
             color: var(--text-main);
             margin-bottom: 1.4rem;
-            text-align: center;
+            text-align: left;
+            white-space: nowrap;
         }
 
         .hero-subtitle {
@@ -326,7 +326,7 @@
             line-height: 1.65;
             max-width: 560px;
             margin-bottom: 2.3rem;
-            text-align: center;
+            text-align: left;
         }
 
         /* BOTÓN REDONDEADO */
@@ -361,9 +361,9 @@
 
         .founder-frame {
             position: relative;
-            width: min(380px, 85vw);
+            width: min(360px, 85vw);
             margin: 0 auto;
-            padding: 1.2rem;
+            padding: 1rem;
             background: transparent;
             border: none;
             overflow: hidden;
@@ -405,9 +405,9 @@
 
         .founder-role {
             display: block;
-            font-family: var(--font-din);
+            font-family: var(--font-dm);
             font-weight: 700;
-            font-size: 1.85rem;
+            font-size: 1.75rem;
             letter-spacing: 0.04em;
             text-transform: uppercase;
             color: var(--text-main);
@@ -426,14 +426,14 @@
         /* 4. ESTILOS EDITORIALES (NOSOTROS CON ESPACIADO HOLGADO) */
         .editorial-header {
             text-align: center;
-            margin-bottom: 3.2rem;
+            margin-bottom: 2.2rem;
         }
 
         .editorial-header .top-rule {
             width: 48px;
             height: 1px;
             background-color: var(--accent-highlight);
-            margin: 0 auto 1rem;
+            margin: 0 auto 0.85rem;
         }
 
         .editorial-kicker {
@@ -442,17 +442,17 @@
             text-transform: uppercase;
             color: var(--text-muted);
             display: block;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.65rem;
         }
 
         .editorial-main-title {
-            font-family: var(--font-din);
+            font-family: var(--font-dm);
             font-weight: 700;
-            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-size: clamp(2rem, 3.5vw, 3.1rem);
             letter-spacing: 0.01em;
             text-transform: uppercase;
             color: var(--text-main);
-            line-height: 1.08;
+            line-height: 1.1;
         }
 
         .editorial-grid-2col {
@@ -483,7 +483,7 @@
         /* CONTENEDOR PARA VIDEO VERTICAL PROPORCIONADO */
         .vertical-video-container {
             width: 100%;
-            max-width: 270px;
+            max-width: 255px;
             aspect-ratio: 9 / 16;
             margin: 0 auto;
             background-color: var(--bg-card);
@@ -557,7 +557,7 @@
 
         .service-item {
             background-color: rgba(3, 19, 29, 0.65);
-            padding: 1.6rem;
+            padding: 1.5rem;
             border-radius: 4px;
             border: 1px solid var(--accent-line);
             transition: transform 0.3s ease, border-color 0.3s ease;
@@ -572,12 +572,12 @@
 
         .service-img-wrapper {
             width: 100%;
-            height: 145px;
+            height: 135px;
             background-color: #020d16;
             border: 1px dashed var(--accent-line);
             border-radius: 2px;
             overflow: hidden;
-            margin-bottom: 1.2rem;
+            margin-bottom: 1.1rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -604,20 +604,20 @@
             letter-spacing: 0.2em;
             color: var(--accent-highlight);
             display: block;
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.6rem;
         }
 
         .service-item h3 {
-            font-family: var(--font-editorial);
-            font-size: 1.55rem;
-            font-weight: 400;
-            margin-bottom: 0.8rem;
+            font-family: var(--font-dm);
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
             color: var(--text-main);
         }
 
         .service-item p {
-            font-size: 0.9rem;
-            line-height: 1.68;
+            font-size: 0.88rem;
+            line-height: 1.65;
             color: var(--text-muted);
             font-weight: 300;
         }
@@ -639,7 +639,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1.15rem 0.8rem;
+            padding: 0.95rem 0.8rem;
             border-bottom: 1px solid var(--accent-line);
             transition: padding-left 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
             border-radius: 2px;
@@ -652,7 +652,7 @@
         }
 
         .portfolio-row span:first-child {
-            font-size: 1.02rem;
+            font-size: 0.98rem;
             font-weight: 300;
             color: var(--text-main);
         }
@@ -693,12 +693,12 @@
         }
 
         .contact-heading {
-            font-family: var(--font-din);
+            font-family: var(--font-dm);
             font-weight: 700;
-            font-size: clamp(2.3rem, 3.8vw, 3.3rem);
+            font-size: clamp(2.1rem, 3.4vw, 3rem);
             letter-spacing: 0.01em;
             text-transform: uppercase;
-            line-height: 1.08;
+            line-height: 1.1;
             margin-bottom: 2.5rem;
         }
 
@@ -840,21 +840,16 @@
             z-index: 10;
         }
 
-        /* 4 & 5. EVITAR QUE SE CORTEN SECCIONES EN PANTALLAS MEDIANAS O CON POCO ALTO */
-        @media (max-height: 820px) {
-            .stack-panel {
-                position: relative;
-                height: auto;
-                min-height: 100vh;
-            }
-        }
-
+        /* 4 & 5. RESPONSIVO SIN PERDER SUPERPOSICIÓN EN ESCRITORIO */
         @media (max-width: 1024px) {
             .stack-panel {
                 position: relative;
                 height: auto;
                 min-height: 100vh;
                 padding: 7.5rem 6% 5rem;
+            }
+            #inicio {
+                position: relative;
             }
             .editorial-grid-2col,
             .contact-container {
@@ -872,6 +867,9 @@
             }
             .hero-framed-box {
                 padding: 2.5rem 2rem;
+            }
+            .hero-title {
+                white-space: normal;
             }
         }
 
@@ -906,6 +904,7 @@
             }
             .hero-title {
                 font-size: clamp(1.8rem, 7.5vw, 2.4rem);
+                white-space: normal;
             }
             .hero-framed-box {
                 padding: 2rem 1.2rem;
@@ -986,7 +985,7 @@
                     </a>
                 </div>
             </div>
-            <!-- Flecha centrada debajo del recuadro y apuntando hacia abajo -->
+            <!-- Flecha debajo del recuadro y apuntando hacia abajo -->
             <a href="#fundador" class="scroll-down-indicator" aria-label="Desplazar hacia abajo">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="6 9 12 15 18 9"></polyline>
