@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L&A Consulting Group, S.A.</title>
     
-    <!-- Tipografías (Incluyendo DM Sans y Cormorant Garamond) -->
+    <!-- Tipografías (Incluyendo Montserrat Light/Regular para estilo Rolls-Royce / Editorial, DM Sans y Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Inter:wght@200;300;400;500&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
@@ -23,6 +23,7 @@
             --font-dm: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             --font-editorial: 'Cormorant Garamond', Georgia, serif;
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-luxury: 'Montserrat', 'Inter', sans-serif;
         }
 
         * {
@@ -55,14 +56,14 @@
             text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
         }
 
-        @keyframes slideInLeft {
+        @keyframes fadeUpLuxury {
             0% {
                 opacity: 0;
-                transform: translateX(-80px);
+                transform: translateY(32px);
             }
             100% {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateY(0);
             }
         }
 
@@ -79,18 +80,18 @@
 
         @keyframes bounceArrow {
             0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
+                transform: translate(-50%, 0);
             }
             40% {
-                transform: translateY(7px);
+                transform: translate(-50%, 7px);
             }
             60% {
-                transform: translateY(3px);
+                transform: translate(-50%, 3px);
             }
         }
 
         .animate-hero {
-            animation: slideInLeft 3.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            animation: fadeUpLuxury 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .reveal-right {
@@ -105,77 +106,98 @@
             transform: translateX(0);
         }
 
-        /* HEADER INTACTO */
+        /* HEADER REDISEÑADO (MENU + CONTÁCTANOS IZQUIERDA | LOGO CENTRO | NOMBRE DERECHA) */
         header {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             z-index: 1000;
-            padding: 1.8rem 5% 2.4rem;
-            display: flex;
-            justify-content: space-between;
+            padding: 1.4rem 4%;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.38) 55%, rgba(0, 0, 0, 0) 100%);
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.25) 70%, rgba(0, 0, 0, 0) 100%);
             transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 4%;
+            right: 4%;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.16);
         }
 
         header.header-hidden {
             transform: translateY(-100%);
         }
 
-        .brand-container {
+        .header-left {
             display: flex;
             align-items: center;
-            gap: 1.1rem;
-            text-decoration: none;
+            gap: 2.2rem;
+            justify-self: start;
+        }
+
+        .menu-trigger {
+            background: none;
+            border: none;
             color: var(--text-main);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            font-family: var(--font-sans);
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 0.4rem 0;
+            transition: opacity 0.3s ease;
         }
 
-        .brand-container img {
-            height: 38px;
-            width: auto;
-            object-fit: contain;
+        .menu-trigger:hover {
+            opacity: 0.75;
         }
 
-        .brand-title {
+        .menu-icon {
             display: flex;
             flex-direction: column;
-            font-size: 0.68rem;
-            letter-spacing: 0.25em;
-            line-height: 1.45;
-            font-weight: 500;
-            text-transform: uppercase;
-            color: var(--text-main);
+            gap: 4px;
+            width: 18px;
         }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1.8rem;
-            flex-wrap: wrap;
-            justify-content: flex-end;
+        .menu-icon span {
+            display: block;
+            height: 1px;
+            background-color: var(--text-main);
+            transition: transform 0.3s ease, width 0.3s ease;
         }
 
-        nav a {
+        .menu-icon span:nth-child(1) { width: 100%; }
+        .menu-icon span:nth-child(2) { width: 70%; }
+        .menu-icon span:nth-child(3) { width: 100%; }
+
+        .menu-trigger:hover .menu-icon span:nth-child(2) {
+            width: 100%;
+        }
+
+        .header-contact-link {
             position: relative;
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.85);
+            color: rgba(255, 255, 255, 0.88);
             font-size: 0.68rem;
             font-weight: 500;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.18em;
             text-transform: uppercase;
             padding-bottom: 4px;
             transition: color 0.3s ease;
         }
 
-        nav a:hover,
-        nav a.active {
-            color: var(--text-main);
-            text-shadow: 0 0 8px rgba(255,255,255,0.4);
-        }
-
-        nav a::after {
+        .header-contact-link::after {
             content: '';
             position: absolute;
             left: 0;
@@ -188,9 +210,172 @@
             transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        nav a:hover::after,
-        nav a.active::after {
+        .header-contact-link:hover {
+            color: var(--text-main);
+            text-shadow: 0 0 8px rgba(255,255,255,0.4);
+        }
+
+        .header-contact-link:hover::after {
             transform: scaleX(1);
+        }
+
+        .header-center {
+            justify-self: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-center img {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .header-center:hover img {
+            transform: scale(1.04);
+        }
+
+        .header-right {
+            justify-self: end;
+            text-decoration: none;
+        }
+
+        .brand-title {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+            font-size: 0.68rem;
+            letter-spacing: 0.25em;
+            line-height: 1.45;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--text-main);
+        }
+
+        /* MENÚ DESPLEGABLE TRANSPARENTE GLOSSY */
+        .glossy-menu-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1100;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .glossy-menu-overlay.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .glossy-menu-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: min(380px, 86vw);
+            height: 100vh;
+            z-index: 1200;
+            background: linear-gradient(145deg, rgba(12, 22, 32, 0.62) 0%, rgba(4, 12, 20, 0.78) 100%);
+            backdrop-filter: blur(22px) saturate(140%);
+            -webkit-backdrop-filter: blur(22px) saturate(140%);
+            border-right: 1px solid rgba(255, 255, 255, 0.16);
+            box-shadow: 20px 0 60px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+            padding: 2.2rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transform: translateX(-100%);
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glossy-menu-drawer.open {
+            transform: translateX(0);
+        }
+
+        .drawer-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+        }
+
+        .drawer-close {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            font-size: 0.68rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            padding: 0.4rem 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .drawer-close:hover {
+            opacity: 0.7;
+        }
+
+        .drawer-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.65rem;
+            margin: 2rem 0;
+        }
+
+        .drawer-nav a {
+            position: relative;
+            display: inline-block;
+            text-decoration: none;
+            color: rgba(255, 255, 255, 0.85);
+            font-family: var(--font-sans);
+            font-size: 0.82rem;
+            font-weight: 500;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            padding-bottom: 6px;
+            transition: color 0.3s ease;
+        }
+
+        .drawer-nav a:hover,
+        .drawer-nav a.active {
+            color: var(--text-main);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.45);
+        }
+
+        .drawer-nav a::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--text-main);
+            transform: scaleX(0);
+            transform-origin: left center;
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .drawer-nav a:hover::after,
+        .drawer-nav a.active::after {
+            transform: scaleX(1);
+        }
+
+        .drawer-footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.14);
+            padding-top: 1.4rem;
+            font-size: 0.68rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            line-height: 1.7;
         }
 
         .stack-wrapper {
@@ -214,24 +399,24 @@
             animation: fadeInScale 0.8s ease-out;
         }
 
-        /* 1. INICIO (CON FDOINICIOFINAL.JPG) */
+        /* 1. INICIO (CENTRADO, ELEGANTE CON FONDOELEGANTE.PNG) */
         #inicio { 
             z-index: 1; 
             border-top: none; 
             box-shadow: none; 
-            background: url('L&A/fondoiniciofinal.jpg') center/cover no-repeat;
+            background: url('L&A/fondoelegante.png') center/cover no-repeat;
             position: sticky;
-            align-items: flex-start;
+            align-items: center;
             justify-content: center;
-            text-align: left;
-            padding-top: 9rem;
+            text-align: center;
+            padding-top: 7rem;
             padding-bottom: 4rem;
         }
         #inicio::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, rgba(2, 16, 27, 0.88) 0%, rgba(2, 16, 27, 0.45) 60%, rgba(0,0,0,0.25) 100%);
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.38) 0%, rgba(0, 0, 0, 0.72) 100%);
             z-index: 0;
         }
         #inicio > * {
@@ -239,60 +424,241 @@
             z-index: 1;
         }
 
-        .hero-kicker-line {
+        .hero-content {
+            max-width: 960px;
+            margin: 0 auto;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 1rem;
-            font-size: 0.72rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 1.5rem;
+            text-align: center;
         }
 
-        .hero-kicker-line::before {
-            content: '';
-            width: 40px;
-            height: 1px;
-            background-color: var(--accent-highlight);
+        .hero-kicker-line {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            font-family: var(--font-luxury);
+            font-size: 0.72rem;
+            font-weight: 400;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.82);
+            margin-bottom: 1.4rem;
+        }
+
+        .hero-title {
+            font-family: var(--font-luxury);
+            font-weight: 300;
+            font-size: clamp(2.3rem, 4.8vw, 4.3rem);
+            letter-spacing: 0.22em;
+            line-height: 1.18;
+            text-transform: uppercase;
+            color: var(--text-main);
+            text-align: center;
+            margin-bottom: 1.3rem;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-luxury);
+            font-size: clamp(0.88rem, 1.15vw, 1.05rem);
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 300;
+            letter-spacing: 0.18em;
+            line-height: 1.8;
+            max-width: 680px;
+            margin: 0 auto 2.6rem;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .btn-luxury-pill {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.85rem;
+            padding: 1rem 3rem;
+            background-color: #FFFFFF;
+            color: #0b0b0b;
+            border: 1px solid #FFFFFF;
+            text-decoration: none;
+            font-family: var(--font-luxury);
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            border-radius: 50px;
+            transition: all 0.35s ease;
+        }
+
+        .btn-luxury-pill:hover {
+            background-color: transparent;
+            color: #FFFFFF !important;
+            text-shadow: none !important;
+            border-color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
         }
 
         .scroll-down-indicator {
-            margin: 2.5rem 0 0 0;
+            position: absolute;
+            bottom: 2.2rem;
+            left: 50%;
+            transform: translateX(-50%);
             display: inline-flex;
             align-items: center;
             justify-content: center;
             width: 36px;
             height: 36px;
-            color: var(--accent-highlight);
+            color: rgba(255, 255, 255, 0.75);
             text-decoration: none;
             animation: bounceArrow 2s infinite ease-in-out;
             transition: opacity 0.3s ease;
         }
 
         .scroll-down-indicator:hover {
-            opacity: 0.75;
+            opacity: 1;
+            color: #ffffff;
         }
 
-        /* FUNDADOR */
+        /* 2. FUNDADOR (INSPIRADO EN LA CUARTA IMAGEN: FONDO NEGRO, DOBLE CAPA BORROSA + EDITORIAL) */
         #fundador { 
             z-index: 2; 
             position: sticky;
-            background-color: #0b0b0b;
+            background-color: #000000;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
             overflow: hidden;
+            padding: 7rem 7% 5rem;
         }
-        #fundador::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url('L&A/imagenfundador.JPG') center/cover no-repeat;
-            filter: blur(18px) brightness(0.42);
-            transform: scale(1.08);
-            z-index: 0;
+
+        .founder-editorial-grid {
+            max-width: 1240px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.05fr;
+            gap: 4.5rem;
+            align-items: center;
         }
-        #fundador > * {
+
+        .founder-visual-stage {
             position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            max-width: 540px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: #080808;
+        }
+
+        /* Imagen de fondo difuminada dentro del cuadro grande */
+        .founder-backdrop-blur {
+            position: absolute;
+            inset: -15px;
+            background: url('L&A/imagenfundador.JPG') center/cover no-repeat;
+            filter: blur(18px) brightness(0.45) contrast(1.08);
+            transform: scale(1.08);
             z-index: 1;
+        }
+
+        /* Imagen principal centrada y nítida en primer plano */
+        .founder-foreground-card {
+            position: relative;
+            z-index: 2;
+            width: 56%;
+            aspect-ratio: 4 / 4.4;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
+            background-color: #111;
+        }
+
+        .founder-foreground-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .founder-visual-stage:hover .founder-foreground-card img {
+            transform: scale(1.04);
+        }
+
+        .founder-editorial-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .founder-plus-kicker {
+            font-family: var(--font-sans);
+            font-size: 0.74rem;
+            font-weight: 400;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #d4d4d4;
+            margin-bottom: 1.2rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .founder-editorial-title {
+            font-family: var(--font-luxury);
+            font-weight: 300;
+            font-size: clamp(2.4rem, 4.2vw, 3.8rem);
+            line-height: 1.06;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: #FFFFFF;
+            margin-bottom: 1.5rem;
+        }
+
+        .founder-editorial-bio {
+            font-family: var(--font-sans);
+            font-size: 0.92rem;
+            font-weight: 300;
+            line-height: 1.75;
+            color: #8c8c8c;
+            max-width: 480px;
+            margin-bottom: 3rem;
+        }
+
+        .founder-meta-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.8rem 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .founder-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        .founder-meta-label {
+            font-family: var(--font-sans);
+            font-size: 0.72rem;
+            font-weight: 400;
+            color: #6e6e6e;
+            letter-spacing: 0.04em;
+        }
+
+        .founder-meta-value {
+            font-family: var(--font-sans);
+            font-size: 0.74rem;
+            font-weight: 400;
+            color: #e5e5e5;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            line-height: 1.45;
         }
 
         /* QUIÉNES SOMOS / NOSOTROS */
@@ -371,130 +737,13 @@
             position: relative; 
         }
 
-        .hero-content {
-            max-width: 900px;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .hero-title, .editorial-main-title, .contact-heading {
+        .editorial-main-title, .contact-heading {
             font-family: var(--font-dm);
             font-weight: 700;
             letter-spacing: 0.02em;
             text-transform: uppercase;
             color: var(--text-main);
             text-align: left;
-        }
-
-        .hero-title {
-            font-size: clamp(2.4rem, 4.6vw, 4.2rem);
-            line-height: 1.08;
-            margin-bottom: 1.4rem;
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1rem, 1.3vw, 1.18rem);
-            color: var(--text-muted);
-            font-weight: 300;
-            line-height: 1.7;
-            max-width: 620px;
-            margin-bottom: 2.4rem;
-            text-align: left;
-        }
-
-        .btn-outline {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 0.95rem 2.2rem;
-            border: 1px solid var(--accent-line);
-            background-color: var(--bg-card-deep);
-            color: var(--text-main);
-            text-decoration: none;
-            font-size: 0.74rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            border-radius: 50px;
-            transition: all 0.35s ease;
-        }
-
-        .btn-outline:hover {
-            background-color: var(--text-main);
-            color: var(--bg-primary);
-            border-color: var(--text-main);
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .founder-section {
-            align-items: center;
-            text-align: center;
-        }
-
-        .founder-frame {
-            position: relative;
-            width: min(360px, 85vw);
-            margin: 0 auto;
-            padding: 1rem;
-            background: transparent;
-            border: none;
-            overflow: hidden;
-        }
-
-        .founder-image-wrapper {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 3 / 4;
-            overflow: hidden;
-            background-color: #010a12;
-            z-index: 1;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.6);
-        }
-
-        .founder-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: contrast(1.04);
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .founder-frame:hover .founder-image-wrapper img {
-            transform: scale(1.03);
-        }
-
-        .founder-caption-box {
-            margin-top: -1.6rem;
-            position: relative;
-            z-index: 3;
-            background-color: var(--bg-card);
-            border: 1px solid var(--accent-line);
-            padding: 1.1rem 2rem;
-            display: inline-block;
-            min-width: 240px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-        }
-
-        .founder-role {
-            display: block;
-            font-family: var(--font-dm);
-            font-weight: 700;
-            font-size: 1.75rem;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: var(--text-main);
-            line-height: 1.05;
-        }
-
-        .founder-name {
-            display: block;
-            margin-top: 0.45rem;
-            font-size: 0.72rem;
-            letter-spacing: 0.24em;
-            text-transform: uppercase;
-            color: var(--text-muted);
         }
 
         .editorial-header {
@@ -1003,35 +1252,38 @@
                 min-height: 100vh;
                 padding: 7.5rem 6% 5rem;
             }
-            #inicio, #nosotros, #servicios, #portafolio {
+            #inicio, #fundador, #nosotros, #servicios, #portafolio {
                 position: relative;
             }
-            .about-pillars-grid, .enfoque-grid, .propuesta-grid, .services-grid, .portfolio-grid-dual {
+            .founder-editorial-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .founder-visual-stage {
+                max-width: 440px;
+            }
+            .about-pillars-grid, .enfoque-grid, .propuesta-grid, .services-grid, .portfolio-grid-dual, .contact-container {
                 grid-template-columns: 1fr;
                 gap: 1.8rem;
-            }
-            nav ul {
-                gap: 1.2rem;
             }
         }
 
         @media (max-width: 680px) {
             header {
-                flex-direction: column;
-                gap: 0.85rem;
-                padding: 1rem 5% 1.6rem;
+                padding: 1.1rem 4%;
             }
-            .brand-container img {
-                height: 34px;
+            .header-left {
+                gap: 1rem;
             }
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 0.8rem 1rem;
+            .header-contact-link {
+                display: none;
             }
-            nav a {
-                font-size: 0.64rem;
-                letter-spacing: 0.12em;
+            .header-center img {
+                height: 32px;
+            }
+            .brand-title {
+                font-size: 0.58rem;
+                letter-spacing: 0.16em;
             }
             .stack-panel {
                 position: relative;
@@ -1041,22 +1293,25 @@
             }
             #inicio {
                 min-height: 100vh;
-                padding-top: 9.5rem;
+                padding-top: 7.5rem;
             }
-            .hero-title, .editorial-main-title {
+            .hero-title {
+                font-size: clamp(1.75rem, 7vw, 2.4rem);
+                letter-spacing: 0.14em;
+            }
+            .hero-subtitle {
+                font-size: 0.82rem;
+                letter-spacing: 0.12em;
+            }
+            .editorial-main-title {
                 font-size: clamp(1.8rem, 7.5vw, 2.4rem);
+            }
+            .founder-meta-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
             .about-pillars-grid, .enfoque-grid, .propuesta-grid, .services-grid, .portfolio-grid-dual {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
-            }
-            .founder-frame {
-                width: min(320px, 88vw);
-                padding: 0.9rem;
-            }
-            .founder-caption-box {
-                padding: 0.9rem 1.4rem;
-                min-width: 210px;
             }
             .submit-btn {
                 width: 100%;
@@ -1073,32 +1328,62 @@
 </head>
 <body>
 
-    <!-- ENCABEZADO INTACTO -->
+    <!-- ENCABEZADO REDISEÑADO -->
     <header id="mainHeader">
-        <a href="#inicio" class="brand-container">
+        <div class="header-left">
+            <button type="button" class="menu-trigger" id="menuOpenBtn" aria-label="Abrir menú de navegación">
+                <span class="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+                <span>MENU</span>
+            </button>
+            <a href="#contacto" class="header-contact-link">Contáctanos</a>
+        </div>
+
+        <a href="#inicio" class="header-center" aria-label="Inicio L&A Consulting Group">
             <img src="L&A/logo para pagina L&A sdsd.png" alt="Logo L&A Consulting Group">
+        </a>
+
+        <a href="#inicio" class="header-right">
             <div class="brand-title">
                 <span>LA CONSULTING</span>
                 <span>GROUP, SA</span>
             </div>
         </a>
-
-        <nav>
-            <ul>
-                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
-                <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
-                <li><a href="#enfoque" class="nav-link">Enfoque</a></li>
-                <li><a href="#propuesta" class="nav-link">Propuesta</a></li>
-                <li><a href="#servicios" class="nav-link">Servicios</a></li>
-                <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
-                <li><a href="#contacto" class="nav-link">Contacto</a></li>
-            </ul>
-        </nav>
     </header>
+
+    <!-- MENÚ DESPLEGABLE TRANSPARENTE GLOSSY -->
+    <div class="glossy-menu-overlay" id="menuOverlay"></div>
+    <aside class="glossy-menu-drawer" id="menuDrawer" aria-hidden="true">
+        <div>
+            <div class="drawer-top">
+                <button type="button" class="drawer-close" id="menuCloseBtn">
+                    <span>&times;</span> CERRAR
+                </button>
+            </div>
+            <nav class="drawer-nav">
+                <ul>
+                    <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                    <li><a href="#fundador" class="nav-link">Fundador</a></li>
+                    <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                    <li><a href="#enfoque" class="nav-link">Enfoque</a></li>
+                    <li><a href="#propuesta" class="nav-link">Propuesta</a></li>
+                    <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                    <li><a href="#portafolio" class="nav-link">Portafolio</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="drawer-footer">
+            L&amp;A Consulting Group, S.A.<br>
+            Guatemala, C.A.
+        </div>
+    </aside>
 
     <main class="stack-wrapper">
 
-        <!-- 1. INICIO (CON FDOINICIOFINAL.JPG) -->
+        <!-- 1. INICIO (CENTRADO, ELEGANTE, CON FONDOELEGANTE.PNG) -->
         <section id="inicio" class="stack-panel">
             <div class="hero-content animate-hero">
                 <div class="hero-kicker-line">Estrategia Financiera &bull; Capital &bull; Crecimiento</div>
@@ -1106,26 +1391,60 @@
                 <p class="hero-subtitle">
                     Soluciones financieras estratégicas para empresas que buscan nuevas oportunidades de crecimiento y expansión.
                 </p>
-                <a href="#nosotros" class="btn-outline">
+                <a href="#nosotros" class="btn-luxury-pill">
                     Conoce nuestra firma <span>&rarr;</span>
                 </a>
             </div>
             <a href="#fundador" class="scroll-down-indicator" aria-label="Desplazar hacia abajo">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="6 9 12 15 18 9"></polyline>
                 </svg>
             </a>
         </section>
 
-        <!-- FUNDADOR -->
-        <section id="fundador" class="stack-panel founder-section">
-            <div class="founder-frame reveal-right">
-                <div class="founder-image-wrapper">
-                    <img src="L&A/imagenfundador.JPG" alt="César Abril - Fundador">
+        <!-- 2. FUNDADOR (ESTILO EDITORIAL FONDO NEGRO + DOBLE CAPA BORROSA) -->
+        <section id="fundador" class="stack-panel">
+            <div class="founder-editorial-grid">
+                <div class="founder-visual-stage reveal-right">
+                    <div class="founder-backdrop-blur"></div>
+                    <div class="founder-foreground-card">
+                        <img src="L&A/imagenfundador.JPG" alt="César Abril - Fundador y CEO">
+                    </div>
                 </div>
-                <div class="founder-caption-box">
-                    <span class="founder-role">Fundador</span>
-                    <span class="founder-name">César Abril &mdash; CEO</span>
+
+                <div class="founder-editorial-info reveal-right">
+                    <span class="founder-plus-kicker">+ FUNDADOR</span>
+                    <h2 class="founder-editorial-title">CÉSAR<br>ABRIL</h2>
+                    <p class="founder-editorial-bio">
+                        Liderando L&amp;A Consulting Group, S.A. con una visión orientada a la estructuración financiera de alto impacto, conectando capital estratégico con oportunidades empresariales sólidas en toda la región.
+                    </p>
+
+                    <div class="founder-meta-grid">
+                        <div class="founder-meta-item">
+                            <span class="founder-meta-label">Cargo</span>
+                            <span class="founder-meta-value">Fundador &amp; CEO</span>
+                        </div>
+                        <div class="founder-meta-item">
+                            <span class="founder-meta-label">Ubicación</span>
+                            <span class="founder-meta-value">Guatemala, C.A.</span>
+                        </div>
+                        <div class="founder-meta-item">
+                            <span class="founder-meta-label">Firma</span>
+                            <span class="founder-meta-value">L&amp;A Consulting Group</span>
+                        </div>
+                        <div class="founder-meta-item">
+                            <span class="founder-meta-label">Especialidad</span>
+                            <span class="founder-meta-value">Estrategia &amp; Capital</span>
+                        </div>
+                        <div class="founder-meta-item">
+                            <span class="founder-meta-label">Enfoque</span>
+                            <span class="founder-meta-value">M&amp;A &amp; Estructuración</span>
+                        </div>
+                        <div class="founder-meta-item">
+                            <span class="founder-meta-label">Contacto Directo</span>
+                            <span class="founder-meta-value">(502) 4872-6808</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1449,12 +1768,47 @@
         const header = document.getElementById('mainHeader');
         let lastScrollY = window.scrollY;
 
+        // Control del Menú Glossy Desplegable
+        const menuOpenBtn = document.getElementById('menuOpenBtn');
+        const menuCloseBtn = document.getElementById('menuCloseBtn');
+        const menuDrawer = document.getElementById('menuDrawer');
+        const menuOverlay = document.getElementById('menuOverlay');
+        const drawerLinks = document.querySelectorAll('.drawer-nav a');
+
+        function openMenu() {
+            menuDrawer.classList.add('open');
+            menuOverlay.classList.add('open');
+            menuDrawer.setAttribute('aria-hidden', 'false');
+        }
+
+        function closeMenu() {
+            menuDrawer.classList.remove('open');
+            menuOverlay.classList.remove('open');
+            menuDrawer.setAttribute('aria-hidden', 'true');
+        }
+
+        menuOpenBtn.addEventListener('click', openMenu);
+        menuCloseBtn.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+
+        drawerLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                closeMenu();
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menuDrawer.classList.contains('open')) {
+                closeMenu();
+            }
+        });
+
         window.addEventListener('scroll', () => {
             const currentScrollY = window.scrollY;
 
             if (currentScrollY <= 50) {
                 header.classList.remove('header-hidden');
-            } else if (currentScrollY > lastScrollY) {
+            } else if (currentScrollY > lastScrollY && !menuDrawer.classList.contains('open')) {
                 header.classList.add('header-hidden');
             } else {
                 header.classList.remove('header-hidden');
