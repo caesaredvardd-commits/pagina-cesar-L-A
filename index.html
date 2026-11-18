@@ -63,17 +63,6 @@
             }
         }
 
-        @keyframes slideInRight {
-            0% {
-                opacity: 0;
-                transform: translateX(80px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
         @keyframes fadeInScale {
             0% {
                 opacity: 0;
@@ -85,16 +74,16 @@
             }
         }
 
-        /* 2. DURACIÓN EXTENDIDA EN EL TÍTULO DE INICIO */
+        /* TÍTULO DE INICIO (DURACIÓN EXTENDIDA) */
         .animate-hero {
             animation: slideInLeft 3.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* 3. CLASE PARA ANIMAR SUAVEMENTE DE DERECHA A IZQUIERDA */
+        /* ANIMACIÓN REPETIBLE DE DERECHA A IZQUIERDA */
         .reveal-right {
             opacity: 0;
             transform: translateX(70px);
-            transition: opacity 1.5s cubic-bezier(0.16, 1, 0.3, 1), transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
             will-change: opacity, transform;
         }
 
@@ -103,7 +92,7 @@
             transform: translateX(0);
         }
 
-        /* HEADER INTERACTIVO */
+        /* HEADER INTERACTIVO CON SOMBRADO Y ESTILO SUPERIOR */
         header {
             position: fixed;
             top: 0;
@@ -114,9 +103,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(3, 19, 29, 0.94);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--accent-line);
+            background: linear-gradient(to bottom, rgba(2, 16, 27, 0.95), rgba(2, 16, 27, 0.75));
+            backdrop-filter: blur(16px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 -1px 0 rgba(170, 180, 186, 0.15);
             transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease;
         }
 
@@ -212,7 +201,36 @@
             overflow-x: hidden;
         }
 
-        #inicio { z-index: 1; border-top: none; box-shadow: none; background-color: #02101b; }
+        /* 3. INICIO CON FONDO FONDOINICIO Y MARCO ESTÉTICO */
+        #inicio { 
+            z-index: 1; 
+            border-top: none; 
+            box-shadow: none; 
+            background: url('L&A/fondoinicio.jpg') center/cover no-repeat;
+            position: relative;
+        }
+        #inicio::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(2, 16, 27, 0.78);
+            backdrop-filter: blur(4px);
+            z-index: 0;
+        }
+        #inicio > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-framed-box {
+            border: 1px solid rgba(170, 180, 186, 0.35);
+            padding: 3rem 3.5rem;
+            background: rgba(2, 16, 27, 0.45);
+            backdrop-filter: blur(8px);
+            max-width: 950px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            border-radius: 4px;
+        }
         
         /* 1. FUNDADOR: TODO EL FONDO ES LA IMAGEN DIFUMINADA Y OSCURECIDA */
         #fundador { 
@@ -243,13 +261,13 @@
         /* INICIO */
         .hero-content {
             max-width: 920px;
-            margin-top: 2rem;
+            margin-top: 1rem;
         }
 
         .hero-title {
             font-family: var(--font-din);
             font-weight: 700;
-            font-size: clamp(3rem, 6.2vw, 5.4rem);
+            font-size: clamp(2.8rem, 5.8vw, 5rem);
             line-height: 1.04;
             letter-spacing: 0.01em;
             text-transform: uppercase;
@@ -266,11 +284,12 @@
             margin-bottom: 2.8rem;
         }
 
+        /* 3. BOTÓN REDONDEADO */
         .btn-outline {
             display: inline-flex;
             align-items: center;
             gap: 1rem;
-            padding: 1rem 1.8rem;
+            padding: 1rem 2rem;
             border: 1px solid var(--accent-line);
             background-color: var(--bg-card-deep);
             color: var(--text-main);
@@ -278,6 +297,7 @@
             font-size: 0.75rem;
             letter-spacing: 0.2em;
             text-transform: uppercase;
+            border-radius: 50px;
             transition: all 0.35s ease;
         }
 
@@ -309,7 +329,7 @@
             background-color: var(--accent-line);
         }
 
-        /* FUNDADOR - MARCO LIMPIO SIN BORDE EXTERNO */
+        /* FUNDADOR - MARCO LIMPIO */
         .founder-section {
             align-items: center;
             text-align: center;
@@ -495,7 +515,7 @@
             transform: translateX(4px);
         }
 
-        /* SERVICIOS */
+        /* 4. SERVICIOS CON ESPACIO PARA IMÁGENES */
         .services-container {
             max-width: 1180px;
             margin: 0 auto;
@@ -509,18 +529,48 @@
         }
 
         .service-item {
-            border-top: 1px solid var(--accent-line);
-            padding-top: 1.8rem;
-            background-color: rgba(3, 19, 29, 0.5);
+            background-color: rgba(3, 19, 29, 0.65);
             padding: 1.8rem;
             border-radius: 4px;
             border: 1px solid var(--accent-line);
             transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
         .service-item:hover {
             transform: translateY(-5px);
             border-color: var(--accent-highlight);
+        }
+
+        /* Contenedor de la imagen del servicio */
+        .service-img-wrapper {
+            width: 100%;
+            height: 160px;
+            background-color: #020d16;
+            border: 1px dashed var(--accent-line);
+            border-radius: 2px;
+            overflow: hidden;
+            margin-bottom: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .service-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .service-img-placeholder {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            text-align: center;
+            padding: 0 1rem;
         }
 
         .service-num {
@@ -791,6 +841,9 @@
             nav ul {
                 gap: 1.4rem;
             }
+            .hero-framed-box {
+                padding: 2rem;
+            }
         }
 
         /* CELULARES */
@@ -864,7 +917,7 @@
 </head>
 <body>
 
-    <!-- ENCABEZADO INTERACTIVO -->
+    <!-- ENCABEZADO INTERACTIVO CON SOMBRADO -->
     <header id="mainHeader">
         <a href="#inicio" class="brand-container">
             <img src="L&A/logo para pagina L&A sdsd.png" alt="Logo L&A Consulting Group">
@@ -887,16 +940,18 @@
 
     <main class="stack-wrapper">
 
-        <!-- 1. INICIO -->
+        <!-- 1. INICIO CON FONDO FONDOINICIO Y MARCO ESTÉTICO -->
         <section id="inicio" class="stack-panel">
-            <div class="hero-content animate-hero">
-                <h1 class="hero-title">Estrategia para<br>grandes oportunidades.</h1>
-                <p class="hero-subtitle">
-                    Asesoría financiera, levantamiento de capital y soluciones estratégicas para empresas.
-                </p>
-                <a href="#servicios" class="btn-outline">
-                    Conoce nuestros servicios <span>&rarr;</span>
-                </a>
+            <div class="hero-framed-box reveal-right">
+                <div class="hero-content animate-hero">
+                    <h1 class="hero-title">Estrategia para<br>grandes oportunidades.</h1>
+                    <p class="hero-subtitle">
+                        Asesoría financiera, levantamiento de capital y soluciones estratégicas para empresas.
+                    </p>
+                    <a href="#servicios" class="btn-outline">
+                        Conoce nuestros servicios <span>&rarr;</span>
+                    </a>
+                </div>
             </div>
             <div class="scroll-indicator">Desplaza para explorar</div>
         </section>
@@ -950,7 +1005,7 @@
             </div>
         </section>
 
-        <!-- 4. SERVICIOS -->
+        <!-- 4. SERVICIOS (CON ESPACIO PARA IMÁGENES) -->
         <section id="servicios" class="stack-panel">
             <div class="services-container">
                 <div class="editorial-header reveal-right">
@@ -961,16 +1016,34 @@
 
                 <div class="services-grid">
                     <div class="service-item reveal-right">
+                        <!-- Espacio para imagen de la primera área -->
+                        <div class="service-img-wrapper">
+                            <!-- Reemplaza el src con la ruta de tu imagen o mantén el placeholder -->
+                            <!-- <img src="L&A/servicio1.jpg" alt="Levantamiento y Apalancamiento"> -->
+                            <span class="service-img-placeholder">Imagen Área 01</span>
+                        </div>
                         <span class="service-num">01 / CAPITAL</span>
                         <h3>Levantamiento y Apalancamiento</h3>
                         <p>Estructuración de financiamiento corporativo, préstamos fiduciarios e hipotecarios, y vinculación directa con nuestra cartera de inversionistas.</p>
                     </div>
+
                     <div class="service-item reveal-right">
+                        <!-- Espacio para imagen de la segunda área -->
+                        <div class="service-img-wrapper">
+                            <!-- <img src="L&A/servicio2.jpg" alt="Fusiones, Adquisiciones y Deuda"> -->
+                            <span class="service-img-placeholder">Imagen Área 02</span>
+                        </div>
                         <span class="service-num">02 / ESTRATEGIA</span>
                         <h3>Fusiones, Adquisiciones y Deuda</h3>
                         <p>Diseño de alternativas financieras a la medida, procesos de M&A, monetización de activos y reestructuración eficiente de pasivos empresariales.</p>
                     </div>
+
                     <div class="service-item reveal-right">
+                        <!-- Espacio para imagen de la tercera área -->
+                        <div class="service-img-wrapper">
+                            <!-- <img src="L&A/servicio3.jpg" alt="Evaluación y Riesgo"> -->
+                            <span class="service-img-placeholder">Imagen Área 03</span>
+                        </div>
                         <span class="service-num">03 / ANÁLISIS</span>
                         <h3>Evaluación y Riesgo</h3>
                         <p>Estudios de factibilidad, análisis de mercado, calificación de cartera, administración de desarrollos inmobiliarios y control de tesorería.</p>
@@ -1144,18 +1217,27 @@
             });
         }
 
-        // 3. ACTIVAR ANIMACIÓN DE DERECHA A IZQUIERDA AL LLEGAR A CADA SECCIÓN
+        // ANIMACIÓN REPETIBLE AL ENTRAR Y SALIR DE CADA SECCIÓN
         function triggerSectionAnimations() {
             const windowHeight = window.innerHeight;
             sections.forEach(section => {
                 const rect = section.getBoundingClientRect();
-                if (rect.top <= windowHeight * 0.72) {
-                    const revealElements = section.querySelectorAll('.reveal-right');
+                const revealElements = section.querySelectorAll('.reveal-right');
+                
+                // Se activa cuando la sección entra de forma visible en el viewport
+                if (rect.top <= windowHeight * 0.78 && rect.bottom >= windowHeight * 0.15) {
                     revealElements.forEach((el, index) => {
                         setTimeout(() => {
                             el.classList.add('active');
-                        }, index * 160);
+                        }, index * 140);
                     });
+                } else {
+                    // Si sale completamente de la vista, se reinicia para que vuelva a animar al regresar
+                    if (rect.top > windowHeight || rect.bottom < 0) {
+                        revealElements.forEach(el => {
+                            el.classList.remove('active');
+                        });
+                    }
                 }
             });
         }
