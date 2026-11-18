@@ -5,23 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L&A Consulting Group, S.A.</title>
     
-    <!-- Tipografías (Incluyendo DM Sans y Cormorant Garamond) -->
+    <!-- Tipografías de Alta Gama (DM Sans & Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --bg-primary: #02101b;
+            --bg-primary: #03121D;
+            --bg-petroleo: #0A202C;
             --bg-elevated: #051828;
-            --bg-card: #03131D;
+            --bg-card: #041622;
             --bg-card-deep: #071D29;
-            --text-main: #FFFFFF;
+            --text-main: #E9EDF0;
             --text-muted: #AAB4BA;
-            --accent-line: rgba(170, 180, 186, 0.22);
-            --accent-highlight: #c5a880;
+            --accent-champagne: #B59A72;
+            --accent-line: rgba(181, 154, 114, 0.25);
             --font-dm: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            --font-editorial: 'Cormorant Garamond', Georgia, serif;
             --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
         }
 
@@ -52,7 +52,7 @@
         p:hover, span:hover, h1:hover, h2:hover, h3:hover, strong:hover, label:hover,
         .service-item:hover p, .portfolio-row:hover span, .pillar-item:hover p, .propuesta-item:hover p {
             color: #ffffff !important;
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+            text-shadow: 0 0 12px rgba(181, 154, 114, 0.4);
         }
 
         @keyframes slideInLeft {
@@ -105,7 +105,7 @@
             transform: translateX(0);
         }
 
-        /* HEADER INTACTO */
+        /* HEADER INSTITUCIONAL */
         header {
             position: fixed;
             top: 0;
@@ -116,8 +116,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.38) 55%, rgba(0, 0, 0, 0) 100%);
+            background: linear-gradient(180deg, rgba(3, 18, 29, 0.92) 0%, rgba(3, 18, 29, 0.5) 60%, rgba(3, 18, 29, 0) 100%);
             transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+            border-bottom: 1px solid rgba(181, 154, 114, 0.1);
         }
 
         header.header-hidden {
@@ -160,7 +161,7 @@
         nav a {
             position: relative;
             text-decoration: none;
-            color: rgba(255, 255, 255, 0.85);
+            color: var(--text-muted);
             font-size: 0.68rem;
             font-weight: 500;
             letter-spacing: 0.15em;
@@ -171,8 +172,8 @@
 
         nav a:hover,
         nav a.active {
-            color: var(--text-main);
-            text-shadow: 0 0 8px rgba(255,255,255,0.4);
+            color: var(--accent-champagne);
+            text-shadow: 0 0 8px rgba(181,154,114,0.4);
         }
 
         nav a::after {
@@ -182,7 +183,7 @@
             bottom: 0;
             width: 100%;
             height: 1px;
-            background-color: var(--text-main);
+            background-color: var(--accent-champagne);
             transform: scaleX(0);
             transform-origin: left center;
             transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
@@ -205,7 +206,7 @@
             width: 100%;
             background-color: var(--bg-primary);
             border-top: 1px solid var(--accent-line);
-            box-shadow: 0 -25px 60px rgba(2, 16, 27, 0.85);
+            box-shadow: 0 -25px 60px rgba(3, 18, 29, 0.9);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -214,12 +215,12 @@
             animation: fadeInScale 0.8s ease-out;
         }
 
-        /* 1. INICIO (CON FONDOPRINCIPAL.PNG) */
+        /* 1. SECCIÓN INICIO CON FONDOFINAL.PNG */
         #inicio { 
             z-index: 1; 
             border-top: none; 
             box-shadow: none; 
-            background: url('L&A/fondoprincipal.png') center/cover no-repeat;
+            background: url('L&A/fondofinal.png') center/cover no-repeat;
             position: sticky;
             align-items: flex-start;
             justify-content: center;
@@ -231,7 +232,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to right, rgba(2, 16, 27, 0.88) 0%, rgba(2, 16, 27, 0.45) 60%, rgba(0,0,0,0.25) 100%);
+            background: linear-gradient(135deg, rgba(3, 18, 29, 0.9) 0%, rgba(10, 32, 44, 0.6) 60%, rgba(3, 18, 29, 0.4) 100%);
             z-index: 0;
         }
         #inicio > * {
@@ -246,15 +247,16 @@
             font-size: 0.72rem;
             letter-spacing: 0.25em;
             text-transform: uppercase;
-            color: var(--text-muted);
+            color: var(--accent-champagne);
             margin-bottom: 1.5rem;
+            font-weight: 600;
         }
 
         .hero-kicker-line::before {
             content: '';
             width: 40px;
             height: 1px;
-            background-color: var(--accent-highlight);
+            background-color: var(--accent-champagne);
         }
 
         .scroll-down-indicator {
@@ -264,7 +266,7 @@
             justify-content: center;
             width: 36px;
             height: 36px;
-            color: var(--accent-highlight);
+            color: var(--accent-champagne);
             text-decoration: none;
             animation: bounceArrow 2s infinite ease-in-out;
             transition: opacity 0.3s ease;
@@ -274,20 +276,17 @@
             opacity: 0.75;
         }
 
-        /* FUNDADOR */
+        /* 4. SECCIÓN FUNDADOR ESTILO INSTITUCIONAL (INSPIRACIÓN ÚLTIMA REFERENCIA) */
         #fundador { 
             z-index: 2; 
             position: sticky;
-            background-color: #0b0b0b;
-            overflow: hidden;
+            background-color: var(--bg-petroleo);
         }
         #fundador::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: url('L&A/imagenfundador.JPG') center/cover no-repeat;
-            filter: blur(18px) brightness(0.42);
-            transform: scale(1.08);
+            background: linear-gradient(90deg, rgba(3, 18, 29, 0.95) 0%, rgba(10, 32, 44, 0.82) 50%, rgba(3, 18, 29, 0.95) 100%);
             z-index: 0;
         }
         #fundador > * {
@@ -295,40 +294,103 @@
             z-index: 1;
         }
 
-        /* QUIÉNES SOMOS / NOSOTROS */
+        .founder-institutional-layout {
+            max-width: 1180px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .founder-info-side h2 {
+            font-family: var(--font-dm);
+            font-size: clamp(2.2rem, 3.5vw, 3rem);
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .founder-info-side p {
+            font-size: 1.02rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .founder-badge-box {
+            display: inline-flex;
+            flex-direction: column;
+            border-left: 2px solid var(--accent-champagne);
+            padding-left: 1.2rem;
+        }
+
+        .founder-badge-role {
+            font-family: var(--font-dm);
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-main);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .founder-badge-name {
+            font-size: 0.78rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent-champagne);
+            margin-top: 0.2rem;
+        }
+
+        .founder-photo-card {
+            width: 100%;
+            max-width: 420px;
+            aspect-ratio: 4 / 5;
+            background-color: var(--bg-card);
+            border: 1px solid var(--accent-line);
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 20px 45px rgba(0,0,0,0.6);
+            margin: 0 auto;
+        }
+
+        .founder-photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: contrast(1.05);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .founder-photo-card:hover img {
+            transform: scale(1.03);
+        }
+
+        /* 3. SECCIONES CON PALETA ENRIQUECIDA Y TINTE CHAMPAGNE (INSPIRACIÓN MANSORY / LUJO) */
         #nosotros { 
             z-index: 3; 
-            background: url('L&A/fondosomos.png') center/cover no-repeat;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-petroleo) 100%);
             position: sticky;
             justify-content: flex-start;
             padding-top: 7rem;
             padding-bottom: 4rem;
         }
-        #nosotros::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(2, 16, 27, 0.88);
-            z-index: 0;
-        }
-        #nosotros > * {
-            position: relative;
-            z-index: 1;
-        }
 
-        /* NUESTRO ENFOQUE */
         #enfoque {
             z-index: 4;
-            background-color: var(--bg-primary);
+            background-color: var(--bg-card);
+            border-left: 4px solid var(--accent-champagne);
         }
 
-        /* NUESTRA PROPUESTA DE VALOR */
         #propuesta {
             z-index: 5;
-            background-color: var(--bg-card);
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-petroleo) 100%);
         }
 
-        /* SERVICIOS */
         #servicios { 
             z-index: 6; 
             background: url('L&A/fondoservicios.png') center/cover no-repeat;
@@ -338,7 +400,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(2, 16, 27, 0.86);
+            background: rgba(3, 18, 29, 0.9);
             z-index: 0;
         }
         #servicios > * {
@@ -346,7 +408,6 @@
             z-index: 1;
         }
 
-        /* 2. PORTAFOLIO (CON FONDOPORTAFOLIO2.PNG) */
         #portafolio { 
             z-index: 7; 
             background: url('L&A/fondoportafolio2.png') center/cover no-repeat;
@@ -356,7 +417,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(2, 16, 27, 0.88);
+            background: rgba(3, 18, 29, 0.92);
             z-index: 0;
         }
         #portafolio > * {
@@ -364,11 +425,11 @@
             z-index: 1;
         }
 
-        /* CONTACTO */
         #contacto { 
             z-index: 8; 
-            background-color: #020d16; 
+            background-color: var(--bg-primary); 
             position: relative; 
+            border-top: 1px solid var(--accent-line);
         }
 
         .hero-content {
@@ -409,7 +470,7 @@
             align-items: center;
             gap: 1rem;
             padding: 0.95rem 2.2rem;
-            border: 1px solid var(--accent-line);
+            border: 1px solid var(--accent-champagne);
             background-color: var(--bg-card-deep);
             color: var(--text-main);
             text-decoration: none;
@@ -421,92 +482,23 @@
         }
 
         .btn-outline:hover {
-            background-color: var(--text-main);
+            background-color: var(--accent-champagne);
             color: var(--bg-primary);
-            border-color: var(--text-main);
-            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.2);
+            border-color: var(--accent-champagne);
+            box-shadow: 0 4px 20px rgba(181, 154, 114, 0.35);
             transform: translateY(-2px);
-        }
-
-        .founder-section {
-            align-items: center;
-            text-align: center;
-        }
-
-        .founder-frame {
-            position: relative;
-            width: min(360px, 85vw);
-            margin: 0 auto;
-            padding: 1rem;
-            background: transparent;
-            border: none;
-            overflow: hidden;
-        }
-
-        .founder-image-wrapper {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 3 / 4;
-            overflow: hidden;
-            background-color: #010a12;
-            z-index: 1;
-            box-shadow: 0 20px 45px rgba(0,0,0,0.6);
-        }
-
-        .founder-image-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            filter: contrast(1.04);
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .founder-frame:hover .founder-image-wrapper img {
-            transform: scale(1.03);
-        }
-
-        .founder-caption-box {
-            margin-top: -1.6rem;
-            position: relative;
-            z-index: 3;
-            background-color: var(--bg-card);
-            border: 1px solid var(--accent-line);
-            padding: 1.1rem 2rem;
-            display: inline-block;
-            min-width: 240px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
-        }
-
-        .founder-role {
-            display: block;
-            font-family: var(--font-dm);
-            font-weight: 700;
-            font-size: 1.75rem;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            color: var(--text-main);
-            line-height: 1.05;
-        }
-
-        .founder-name {
-            display: block;
-            margin-top: 0.45rem;
-            font-size: 0.72rem;
-            letter-spacing: 0.24em;
-            text-transform: uppercase;
-            color: var(--text-muted);
         }
 
         .editorial-header {
             text-align: left;
-            margin-bottom: 2rem;
+            margin-bottom: 2.5rem;
             max-width: 780px;
         }
 
         .editorial-header .top-rule {
             width: 48px;
-            height: 1px;
-            background-color: var(--accent-highlight);
+            height: 2px;
+            background-color: var(--accent-champagne);
             margin: 0 0 0.85rem 0;
         }
 
@@ -514,9 +506,10 @@
             font-size: 0.72rem;
             letter-spacing: 0.24em;
             text-transform: uppercase;
-            color: var(--text-muted);
+            color: var(--accent-champagne);
             display: block;
             margin-bottom: 0.65rem;
+            font-weight: 600;
         }
 
         .editorial-main-title {
@@ -566,7 +559,7 @@
         }
 
         .pillar-icon {
-            color: var(--accent-highlight);
+            color: var(--accent-champagne);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -598,11 +591,22 @@
         }
 
         .enfoque-card {
-            background-color: var(--bg-card);
+            background-color: var(--bg-petroleo);
             border: 1px solid var(--accent-line);
             padding: 2.5rem;
             border-radius: 6px;
             box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            position: relative;
+        }
+
+        .enfoque-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            background-color: var(--accent-champagne);
         }
 
         .enfoque-card h3 {
@@ -629,7 +633,7 @@
         }
 
         .propuesta-item {
-            background-color: rgba(3, 19, 29, 0.6);
+            background-color: rgba(10, 32, 44, 0.5);
             border: 1px solid var(--accent-line);
             padding: 2rem;
             border-radius: 4px;
@@ -637,16 +641,18 @@
         }
 
         .propuesta-item:hover {
-            border-color: var(--accent-highlight);
+            border-color: var(--accent-champagne);
             transform: translateY(-4px);
+            background-color: rgba(10, 32, 44, 0.8);
         }
 
         .propuesta-num {
             font-size: 0.72rem;
             letter-spacing: 0.2em;
-            color: var(--accent-highlight);
+            color: var(--accent-champagne);
             margin-bottom: 0.8rem;
             display: block;
+            font-weight: 600;
         }
 
         .propuesta-item h3 {
@@ -676,7 +682,7 @@
         }
 
         .service-item {
-            background-color: rgba(3, 19, 29, 0.75);
+            background-color: rgba(4, 22, 34, 0.82);
             padding: 1.6rem;
             border-radius: 8px;
             border: 1px solid var(--accent-line);
@@ -688,14 +694,14 @@
 
         .service-item:hover {
             transform: translateY(-6px);
-            border-color: var(--accent-highlight);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            border-color: var(--accent-champagne);
+            box-shadow: 0 15px 35px rgba(181, 154, 114, 0.15);
         }
 
         .service-img-wrapper {
             width: 100%;
             height: 170px;
-            background-color: #020d16;
+            background-color: var(--bg-primary);
             border-radius: 6px;
             overflow: hidden;
             margin-bottom: 1.2rem;
@@ -716,7 +722,7 @@
         .service-num {
             font-size: 0.72rem;
             letter-spacing: 0.2em;
-            color: var(--accent-highlight);
+            color: var(--accent-champagne);
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 600;
@@ -745,14 +751,15 @@
             font-size: 0.75rem;
             letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: var(--text-main);
+            color: var(--accent-champagne);
             text-decoration: none;
             margin-top: auto;
             transition: color 0.3s ease;
+            font-weight: 600;
         }
 
         .service-link:hover {
-            color: var(--accent-highlight);
+            color: #ffffff;
         }
 
         .portfolio-container {
@@ -768,12 +775,12 @@
         }
 
         .portfolio-box-glass {
-            background: rgba(3, 19, 29, 0.65);
+            background: rgba(4, 22, 34, 0.78);
             border: 1px solid var(--accent-line);
             border-radius: 8px;
             padding: 1.8rem 2rem;
             backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .portfolio-row {
@@ -791,7 +798,7 @@
 
         .portfolio-row:hover {
             padding-left: 0.6rem;
-            border-bottom-color: var(--accent-highlight);
+            border-bottom-color: var(--accent-champagne);
         }
 
         .portfolio-row-left {
@@ -803,7 +810,7 @@
         .portfolio-num {
             font-size: 0.8rem;
             letter-spacing: 0.15em;
-            color: var(--accent-highlight);
+            color: var(--accent-champagne);
             font-weight: 600;
         }
 
@@ -814,14 +821,14 @@
         }
 
         .portfolio-arrow {
-            color: var(--text-muted);
+            color: var(--accent-champagne);
             font-size: 0.9rem;
             transition: transform 0.3s ease, color 0.3s ease;
         }
 
         .portfolio-row:hover .portfolio-arrow {
             transform: translateX(4px);
-            color: var(--accent-highlight);
+            color: #ffffff;
         }
 
         .contact-container {
@@ -841,15 +848,16 @@
             font-size: 0.72rem;
             letter-spacing: 0.24em;
             text-transform: uppercase;
-            color: var(--text-muted);
+            color: var(--accent-champagne);
             margin-bottom: 2rem;
+            font-weight: 600;
         }
 
         .kicker-inline::after {
             content: '';
             width: 48px;
             height: 1px;
-            background-color: var(--accent-highlight);
+            background-color: var(--accent-champagne);
         }
 
         .contact-heading {
@@ -878,21 +886,21 @@
         }
 
         .company-details a {
-            color: var(--accent-highlight);
+            color: var(--accent-champagne);
             text-decoration: none;
             border-bottom: 1px solid transparent;
             transition: border-color 0.3s ease;
         }
 
         .company-details a:hover {
-            border-bottom-color: var(--accent-highlight);
+            border-bottom-color: var(--accent-champagne);
         }
 
         .contact-form {
             display: flex;
             flex-direction: column;
             gap: 1.1rem;
-            background-color: var(--bg-card);
+            background-color: var(--bg-petroleo);
             padding: 2.5rem;
             border-radius: 6px;
             border: 1px solid var(--accent-line);
@@ -924,7 +932,7 @@
         .form-field select:focus,
         .form-field textarea:focus {
             background-color: var(--bg-card-deep);
-            border-bottom-color: var(--accent-highlight);
+            border-bottom-color: var(--accent-champagne);
         }
 
         .form-field select {
@@ -949,7 +957,7 @@
 
         .consent-row input[type="checkbox"] {
             margin-top: 0.2rem;
-            accent-color: var(--accent-highlight);
+            accent-color: var(--accent-champagne);
             width: 15px;
             height: 15px;
             cursor: pointer;
@@ -959,7 +967,7 @@
             margin-top: 0.8rem;
             padding: 1.1rem 2rem;
             background-color: var(--bg-card-deep);
-            border: 1px solid var(--accent-line);
+            border: 1px solid var(--accent-champagne);
             color: var(--text-main);
             font-size: 0.75rem;
             letter-spacing: 0.22em;
@@ -968,23 +976,24 @@
             transition: all 0.35s ease;
             align-self: flex-start;
             border-radius: 2px;
+            font-weight: 600;
         }
 
         .submit-btn:hover {
-            background-color: var(--accent-highlight);
+            background-color: var(--accent-champagne);
             color: var(--bg-primary);
-            border-color: var(--accent-highlight);
+            border-color: var(--accent-champagne);
         }
 
         .form-status {
             font-size: 0.85rem;
-            color: var(--accent-highlight);
+            color: var(--accent-champagne);
             margin-top: 0.5rem;
             display: none;
         }
 
         footer {
-            background-color: #010910;
+            background-color: #020d16;
             border-top: 1px solid var(--accent-line);
             padding: 2rem 8%;
             display: flex;
@@ -1003,12 +1012,12 @@
                 min-height: 100vh;
                 padding: 7.5rem 6% 5rem;
             }
-            #inicio, #nosotros, #servicios, #portafolio {
+            #inicio, #nosotros, #servicios, #portafolio, #fundador {
                 position: relative;
             }
-            .about-pillars-grid, .enfoque-grid, .propuesta-grid, .services-grid, .portfolio-grid-dual {
+            .founder-institutional-layout, .about-pillars-grid, .enfoque-grid, .propuesta-grid, .services-grid, .portfolio-grid-dual, .contact-container {
                 grid-template-columns: 1fr;
-                gap: 1.8rem;
+                gap: 2.2rem;
             }
             nav ul {
                 gap: 1.2rem;
@@ -1046,18 +1055,6 @@
             .hero-title, .editorial-main-title {
                 font-size: clamp(1.8rem, 7.5vw, 2.4rem);
             }
-            .about-pillars-grid, .enfoque-grid, .propuesta-grid, .services-grid, .portfolio-grid-dual {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-            .founder-frame {
-                width: min(320px, 88vw);
-                padding: 0.9rem;
-            }
-            .founder-caption-box {
-                padding: 0.9rem 1.4rem;
-                min-width: 210px;
-            }
             .submit-btn {
                 width: 100%;
                 text-align: center;
@@ -1073,7 +1070,7 @@
 </head>
 <body>
 
-    <!-- ENCABEZADO INTACTO -->
+    <!-- ENCABEZADO INSTITUCIONAL -->
     <header id="mainHeader">
         <a href="#inicio" class="brand-container">
             <img src="L&A/logo para pagina L&A sdsd.png" alt="Logo L&A Consulting Group">
@@ -1087,6 +1084,7 @@
             <ul>
                 <li><a href="#inicio" class="nav-link active">Inicio</a></li>
                 <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+                <li><a href="#fundador" class="nav-link">Fundador</a></li>
                 <li><a href="#enfoque" class="nav-link">Enfoque</a></li>
                 <li><a href="#propuesta" class="nav-link">Propuesta</a></li>
                 <li><a href="#servicios" class="nav-link">Servicios</a></li>
@@ -1098,7 +1096,7 @@
 
     <main class="stack-wrapper">
 
-        <!-- 1. INICIO (CON FONDOPRINCIPAL.PNG) -->
+        <!-- 1. INICIO (CON FONDOFINAL.PNG) -->
         <section id="inicio" class="stack-panel">
             <div class="hero-content animate-hero">
                 <div class="hero-kicker-line">Estrategia Financiera &bull; Capital &bull; Crecimiento</div>
@@ -1117,15 +1115,25 @@
             </a>
         </section>
 
-        <!-- FUNDADOR -->
-        <section id="fundador" class="stack-panel founder-section">
-            <div class="founder-frame reveal-right">
-                <div class="founder-image-wrapper">
-                    <img src="L&A/imagenfundador.JPG" alt="César Abril - Fundador">
+        <!-- 4. FUNDADOR ESTILO INSTITUCIONAL -->
+        <section id="fundador" class="stack-panel">
+            <div class="founder-institutional-layout">
+                <div class="founder-info-side reveal-right">
+                    <div class="editorial-header" style="margin-bottom: 1.5rem;">
+                        <div class="top-rule"></div>
+                        <span class="editorial-kicker">Liderazgo Ejecutivo</span>
+                    </div>
+                    <h2>Dirección y Visión Estratégica</h2>
+                    <p>
+                        Encabezado por César Abril, nuestro equipo directivo aporta una sólida trayectoria en estructuración financiera, banca corporativa y optimización de activos para asegurar el éxito y respaldo en cada operación.
+                    </p>
+                    <div class="founder-badge-box">
+                        <span class="founder-badge-role">César Abril</span>
+                        <span class="founder-badge-name">Fundador &mdash; CEO</span>
+                    </div>
                 </div>
-                <div class="founder-caption-box">
-                    <span class="founder-role">Fundador</span>
-                    <span class="founder-name">César Abril &mdash; CEO</span>
+                <div class="founder-photo-card reveal-right">
+                    <img src="L&A/imagenfundador.JPG" alt="César Abril - Fundador y CEO">
                 </div>
             </div>
         </section>
@@ -1141,7 +1149,7 @@
 
                 <div class="about-text-block reveal-right">
                     <p>
-                        En L&amp;A Consulting Group, S.A. brindamos asesoría financiera de alto nivel, combinando análisis profundo, visión estratégica y soluciones a la medida para impulsar el crecimiento de nuestros clientes.
+                        En L&amp;A Consulting Group, S.A. brindamos asesoría financiera de alto nivel, combinando análisis profundo, visión estratégica y soluciones a la medida para impulsar el crecimiento de nuestros clientes[cite: 14].
                     </p>
                 </div>
 
@@ -1153,7 +1161,7 @@
                             </div>
                             <h3 class="pillar-title">Experiencia</h3>
                         </div>
-                        <p class="pillar-desc">Trayectoria y conocimiento financiero</p>
+                        <p class="pillar-desc">Trayectoria y conocimiento financiero[cite: 14]</p>
                     </div>
 
                     <div class="pillar-item">
@@ -1163,7 +1171,7 @@
                             </div>
                             <h3 class="pillar-title">Enfoque</h3>
                         </div>
-                        <p class="pillar-desc">Soluciones estructuradas a medida</p>
+                        <p class="pillar-desc">Soluciones estructuradas a medida[cite: 14]</p>
                     </div>
 
                     <div class="pillar-item">
@@ -1173,7 +1181,7 @@
                             </div>
                             <h3 class="pillar-title">Alcance</h3>
                         </div>
-                        <p class="pillar-desc">Diversidad de industrias y oportunidades</p>
+                        <p class="pillar-desc">Diversidad de industrias y oportunidades[cite: 14]</p>
                     </div>
                 </div>
             </div>
@@ -1255,7 +1263,7 @@
                         </div>
                         <span class="service-num">01 / CAPITAL</span>
                         <h3>Levantamiento y Apalancamiento</h3>
-                        <p>Estructuración de financiamiento corporativo, préstamos fiduciarios e hipotecarios, y vinculación directa con nuestra cartera de inversionistas.</p>
+                        <p>Estructuración de financiamiento corporativo, préstamos fiduciarios e hipotecarios, y vinculación directa con nuestra cartera de inversionistas[cite: 18].</p>
                         <a href="#contacto" class="service-link">Conocer más &rarr;</a>
                     </div>
 
@@ -1265,7 +1273,7 @@
                         </div>
                         <span class="service-num">02 / ESTRATEGIA</span>
                         <h3>Fusiones, Adquisiciones y Deuda</h3>
-                        <p>Diseño de alternativas financieras a la medida, procesos de M&amp;A, monetización de activos y reestructuración eficiente de pasivos.</p>
+                        <p>Diseño de alternativas financieras a la medida, procesos de M&amp;A, monetización de activos y reestructuración eficiente de pasivos[cite: 18].</p>
                         <a href="#contacto" class="service-link">Conocer más &rarr;</a>
                     </div>
 
@@ -1275,14 +1283,14 @@
                         </div>
                         <span class="service-num">03 / ANÁLISIS</span>
                         <h3>Evaluación y Riesgo</h3>
-                        <p>Estudios de factibilidad, análisis de mercado, calificación de cartera, administración de desarrollos inmobiliarios y control de tesorería.</p>
+                        <p>Estudios de factibilidad, análisis de mercado, calificación de cartera, administración de desarrollos inmobiliarios y control de tesorería[cite: 18].</p>
                         <a href="#contacto" class="service-link">Conocer más &rarr;</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- 2. PORTAFOLIO (CON FONDOPORTAFOLIO2.PNG) -->
+        <!-- PORTAFOLIO -->
         <section id="portafolio" class="stack-panel">
             <div class="portfolio-container">
                 <div class="editorial-header reveal-right">
