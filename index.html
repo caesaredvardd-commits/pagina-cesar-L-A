@@ -87,12 +87,10 @@
             }
         }
 
-        /* TÍTULO DE INICIO (DURACIÓN EXTENDIDA) */
         .animate-hero {
             animation: slideInLeft 3.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* ANIMACIÓN REPETIBLE DE DERECHA A IZQUIERDA */
         .reveal-right {
             opacity: 0;
             transform: translateX(70px);
@@ -105,7 +103,7 @@
             transform: translateX(0);
         }
 
-        /* 3. HEADER PURO ESTILO SPACEX (DEGRADADO SUTIL SIN BLOQUE SÓLIDO) */
+        /* HEADER INTACTO */
         header {
             position: fixed;
             top: 0;
@@ -190,7 +188,6 @@
             transform: scaleX(1);
         }
 
-        /* EFECTO SCROLL SUPERPUESTO CON ESPACIADO CÓMODO */
         .stack-wrapper {
             position: relative;
             width: 100%;
@@ -212,7 +209,7 @@
             animation: fadeInScale 0.8s ease-out;
         }
 
-        /* INICIO CON FONDO FONDOINICIO Y MARCO AL LADO IZQUIERDO */
+        /* INICIO (REFERENCIA IMAGEN 1) */
         #inicio { 
             z-index: 1; 
             border-top: none; 
@@ -238,21 +235,38 @@
         }
 
         .hero-framed-box {
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 3.5rem 4rem;
-            background: rgba(2, 16, 27, 0.35);
-            backdrop-filter: blur(6px);
-            max-width: 960px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            padding: 3rem 3.5rem;
+            background: rgba(2, 16, 27, 0.45);
+            backdrop-filter: blur(8px);
+            max-width: 900px;
             width: 100%;
             margin: 0;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
             border-radius: 2px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
         }
 
-        /* 1. FLECHA JUSTO DEBAJO DEL RECUADRO Y APUNTANDO HACIA ABAJO */
+        .hero-kicker-line {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.68rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 1.4rem;
+        }
+
+        .hero-kicker-line::before {
+            content: '';
+            width: 36px;
+            height: 1px;
+            background-color: var(--accent-highlight);
+        }
+
         .scroll-down-indicator {
             margin: 2rem 0 0 1.5rem;
             display: inline-flex;
@@ -270,7 +284,7 @@
             opacity: 0.75;
         }
 
-        /* FUNDADOR: IMAGENFUNDADOR.JPG CON EFECTO DIFUMINADO */
+        /* FUNDADOR */
         #fundador { 
             z-index: 2; 
             position: sticky;
@@ -291,12 +305,31 @@
             z-index: 1;
         }
 
-        #nosotros { z-index: 3; background-color: var(--bg-primary); }
+        /* NOSOTROS / QUIÉNES SOMOS (REFERENCIA IMAGEN 3 CON FONDOSOMOS.PNG) */
+        #nosotros { 
+            z-index: 3; 
+            background: url('L&A/fondosomos.png') center/cover no-repeat;
+            position: sticky;
+            justify-content: flex-start;
+            padding-top: 7rem;
+            padding-bottom: 4rem;
+        }
+        #nosotros::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(2, 16, 27, 0.85);
+            z-index: 0;
+        }
+        #nosotros > * {
+            position: relative;
+            z-index: 1;
+        }
+
         #servicios { z-index: 4; background-color: var(--bg-card-deep); }
         #portafolio { z-index: 5; background-color: var(--bg-primary); }
         #contacto { z-index: 6; background-color: #020d16; position: relative; }
 
-        /* INICIO */
         .hero-content {
             max-width: 100%;
             margin: 0;
@@ -305,18 +338,16 @@
             align-items: flex-start;
         }
 
-        /* 2. TÍTULO CON TIPOGRAFÍA DM SANS SOBRIA Y ELEGANTE EN UNA LÍNEA */
         .hero-title {
             font-family: var(--font-dm);
             font-weight: 700;
-            font-size: clamp(1.9rem, 3.4vw, 3.1rem);
-            line-height: 1.15;
-            letter-spacing: 0.03em;
+            font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+            line-height: 1.1;
+            letter-spacing: 0.02em;
             text-transform: uppercase;
             color: var(--text-main);
-            margin-bottom: 1.4rem;
+            margin-bottom: 1.2rem;
             text-align: left;
-            white-space: nowrap;
         }
 
         .hero-subtitle {
@@ -324,12 +355,11 @@
             color: var(--text-muted);
             font-weight: 300;
             line-height: 1.65;
-            max-width: 560px;
-            margin-bottom: 2.3rem;
+            max-width: 580px;
+            margin-bottom: 2.2rem;
             text-align: left;
         }
 
-        /* BOTÓN REDONDEADO */
         .btn-outline {
             display: inline-flex;
             align-items: center;
@@ -353,7 +383,6 @@
             box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
         }
 
-        /* FUNDADOR - MARCO LIMPIO */
         .founder-section {
             align-items: center;
             text-align: center;
@@ -423,17 +452,18 @@
             color: var(--text-muted);
         }
 
-        /* 4. ESTILOS EDITORIALES (NOSOTROS CON ESPACIADO HOLGADO) */
+        /* ESTILOS EDITORIALES (NOSOTROS / QUIÉNES SOMOS - ESTILO IMAGEN 3) */
         .editorial-header {
-            text-align: center;
-            margin-bottom: 2.2rem;
+            text-align: left;
+            margin-bottom: 2rem;
+            max-width: 720px;
         }
 
         .editorial-header .top-rule {
             width: 48px;
             height: 1px;
             background-color: var(--accent-highlight);
-            margin: 0 auto 0.85rem;
+            margin: 0 0 0.85rem 0;
         }
 
         .editorial-kicker {
@@ -448,101 +478,79 @@
         .editorial-main-title {
             font-family: var(--font-dm);
             font-weight: 700;
-            font-size: clamp(2rem, 3.5vw, 3.1rem);
+            font-size: clamp(2.1rem, 3.8vw, 3.2rem);
             letter-spacing: 0.01em;
             text-transform: uppercase;
             color: var(--text-main);
             line-height: 1.1;
         }
 
-        .editorial-grid-2col {
-            display: grid;
-            grid-template-columns: 1.25fr 0.85fr;
-            gap: 4.5rem;
+        .about-content-layout {
             max-width: 1180px;
             margin: 0 auto;
-            align-items: center;
+            width: 100%;
         }
 
-        .editorial-lead {
-            font-size: 1.3rem;
-            font-weight: 300;
-            color: var(--text-main);
-            margin-bottom: 1.2rem;
-            line-height: 1.4;
+        .about-text-block {
+            max-width: 680px;
+            margin-bottom: 2.8rem;
         }
 
-        .editorial-body p {
-            font-size: 0.96rem;
+        .about-text-block p {
+            font-size: 0.98rem;
             line-height: 1.75;
             color: var(--text-muted);
-            margin-bottom: 1.15rem;
             font-weight: 300;
         }
 
-        /* CONTENEDOR PARA VIDEO VERTICAL PROPORCIONADO */
-        .vertical-video-container {
-            width: 100%;
-            max-width: 255px;
-            aspect-ratio: 9 / 16;
+        /* TRES PILARES INFERIORES (ESTILO IMAGEN 3) */
+        .about-pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            border-top: 1px solid var(--accent-line);
+            padding-top: 2rem;
+            max-width: 1180px;
             margin: 0 auto;
-            background-color: var(--bg-card);
-            border: 1px solid var(--accent-line);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+
+        .pillar-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .pillar-header {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .pillar-icon {
+            color: var(--accent-highlight);
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
 
-        .vertical-video-container video,
-        .vertical-video-container iframe {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .video-placeholder-text {
-            font-size: 0.72rem;
+        .pillar-title {
+            font-family: var(--font-dm);
+            font-size: 0.82rem;
+            font-weight: 700;
             letter-spacing: 0.2em;
             text-transform: uppercase;
-            color: var(--text-muted);
-            text-align: center;
-            padding: 0 1.5rem;
-        }
-
-        .circle-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.9rem;
-            margin-top: 1.2rem;
-            text-decoration: none;
             color: var(--text-main);
-            font-size: 0.82rem;
-            letter-spacing: 0.08em;
         }
 
-        .circle-icon {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            border: 1px solid var(--accent-line);
-            background-color: var(--bg-card);
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
+        .pillar-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            line-height: 1.5;
         }
 
-        .circle-link:hover .circle-icon {
-            background-color: var(--text-main);
-            color: var(--bg-primary);
-            transform: translateX(4px);
-        }
-
-        /* 4. SERVICIOS CON ESPACIO CÓMODO */
+        /* SERVICIOS */
         .services-container {
             max-width: 1180px;
             margin: 0 auto;
@@ -840,7 +848,6 @@
             z-index: 10;
         }
 
-        /* 4 & 5. RESPONSIVO SIN PERDER SUPERPOSICIÓN EN ESCRITORIO */
         @media (max-width: 1024px) {
             .stack-panel {
                 position: relative;
@@ -848,13 +855,12 @@
                 min-height: 100vh;
                 padding: 7.5rem 6% 5rem;
             }
-            #inicio {
+            #inicio, #nosotros {
                 position: relative;
             }
-            .editorial-grid-2col,
-            .contact-container {
+            .about-pillars-grid {
                 grid-template-columns: 1fr;
-                gap: 3rem;
+                gap: 1.8rem;
             }
             .services-grid {
                 grid-template-columns: 1fr;
@@ -868,12 +874,8 @@
             .hero-framed-box {
                 padding: 2.5rem 2rem;
             }
-            .hero-title {
-                white-space: normal;
-            }
         }
 
-        /* 5. CELULARES: TODOS LOS RECUADROS VISIBLES Y DESPLAZABLES */
         @media (max-width: 680px) {
             header {
                 flex-direction: column;
@@ -902,19 +904,15 @@
                 min-height: 100vh;
                 padding-top: 9rem;
             }
-            .hero-title {
+            .hero-title, .editorial-main-title {
                 font-size: clamp(1.8rem, 7.5vw, 2.4rem);
-                white-space: normal;
             }
             .hero-framed-box {
                 padding: 2rem 1.2rem;
             }
-            .editorial-header {
-                margin-bottom: 2.5rem;
-            }
-            .editorial-main-title,
-            .contact-heading {
-                font-size: clamp(1.9rem, 8vw, 2.5rem);
+            .about-pillars-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
             }
             .founder-frame {
                 width: min(320px, 88vw);
@@ -949,7 +947,7 @@
 </head>
 <body>
 
-    <!-- ENCABEZADO PURO ESTILO SPACEX -->
+    <!-- ENCABEZADO INTACTO -->
     <header id="mainHeader">
         <a href="#inicio" class="brand-container">
             <img src="L&A/logo para pagina L&A sdsd.png" alt="Logo L&A Consulting Group">
@@ -972,20 +970,20 @@
 
     <main class="stack-wrapper">
 
-        <!-- 1 & 2. INICIO -->
+        <!-- 1. INICIO (ACTUALIZADO SEGÚN REFERENCIA 1) -->
         <section id="inicio" class="stack-panel">
             <div class="hero-framed-box reveal-right">
                 <div class="hero-content animate-hero">
-                    <h1 class="hero-title">L&amp;A Consulting Group, SA</h1>
+                    <div class="hero-kicker-line">Estrategia Financiera &bull; Capital &bull; Crecimiento</div>
+                    <h1 class="hero-title">L&amp;A Consulting Group, S.A.</h1>
                     <p class="hero-subtitle">
-                        Asesoría financiera, levantamiento de capital y soluciones estratégicas para empresas.
+                        Soluciones financieras estratégicas para empresas que buscan nuevas oportunidades de crecimiento y expansión.
                     </p>
-                    <a href="#servicios" class="btn-outline">
-                        Conoce nuestros servicios <span>&rarr;</span>
+                    <a href="#nosotros" class="btn-outline">
+                        Conoce nuestra firma <span>&rarr;</span>
                     </a>
                 </div>
             </div>
-            <!-- Flecha debajo del recuadro y apuntando hacia abajo -->
             <a href="#fundador" class="scroll-down-indicator" aria-label="Desplazar hacia abajo">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                     <polyline points="6 9 12 15 18 9"></polyline>
@@ -1006,41 +1004,57 @@
             </div>
         </section>
 
-        <!-- 4. NOSOTROS (CON VIDEO VERTICAL PROPORCIONADO) -->
+        <!-- 2. QUIÉNES SOMOS / NOSOTROS (ACTUALIZADO CON FONDOSOMOS.PNG Y ESTILO REFERENCIA 3) -->
         <section id="nosotros" class="stack-panel">
-            <div class="editorial-header reveal-right">
-                <div class="top-rule"></div>
-                <span class="editorial-kicker">Quiénes Somos</span>
-                <h2 class="editorial-main-title">Respaldo financiero con visión estratégica</h2>
-            </div>
-
-            <div class="editorial-grid-2col">
-                <div class="editorial-body reveal-right">
-                    <p class="editorial-lead">Solidez y flexibilidad estructurada</p>
-                    <p>
-                        Somos una empresa dedicada al levantamiento de capitales para todo tipo de industria, gestionando diferentes formas de apoyo financiero, basándonos en nuestra experiencia, análisis de riesgo y evaluación de proyectos.
-                    </p>
-                    <p>
-                        Somos una empresa muy flexible que busca alternativas para nuestros clientes a nivel financiero: préstamos, inversión, fusiones, adquisiciones, reestructuración de deuda.
-                    </p>
-                    <p>
-                        Contamos con una amplia cartera de empresas inversoras, así también como una cartera de empresas que requieren apalancamiento financiero.
-                    </p>
-                    <a href="#portafolio" class="circle-link">
-                        <span>Explorar portafolio</span>
-                        <span class="circle-icon">&rarr;</span>
-                    </a>
+            <div class="about-content-layout">
+                <div class="editorial-header reveal-right">
+                    <div class="top-rule"></div>
+                    <span class="editorial-kicker">Quiénes Somos</span>
+                    <h2 class="editorial-main-title">Convertimos oportunidades financieras en decisiones estratégicas.</h2>
                 </div>
 
-                <!-- Contenedor para video vertical -->
-                <div class="vertical-video-container reveal-right">
-                    <!-- <video src="L&A/tu-video.mp4" autoplay muted loop playsinline></video> -->
-                    <span class="video-placeholder-text">Espacio para Video Vertical</span>
+                <div class="about-text-block reveal-right">
+                    <p>
+                        En L&amp;A Consulting Group, S.A. brindamos asesoría financiera de alto nivel, combinando análisis profundo, visión estratégica y soluciones a la medida para impulsar el crecimiento de nuestros clientes.
+                    </p>
+                </div>
+
+                <!-- Tres pilares inferiores idénticos a la referencia 3 -->
+                <div class="about-pillars-grid reveal-right">
+                    <div class="pillar-item">
+                        <div class="pillar-header">
+                            <div class="pillar-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l4 6-10 13L2 9z"/><path d="M11 3l8 6-7 13L5 9z"/><path d="M2 9h20"/></svg>
+                            </div>
+                            <h3 class="pillar-title">Experiencia</h3>
+                        </div>
+                        <p class="pillar-desc">Trayectoria y conocimiento financiero</p>
+                    </div>
+
+                    <div class="pillar-item">
+                        <div class="pillar-header">
+                            <div class="pillar-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>
+                            </div>
+                            <h3 class="pillar-title">Enfoque</h3>
+                        </div>
+                        <p class="pillar-desc">Soluciones estructuradas a medida</p>
+                    </div>
+
+                    <div class="pillar-item">
+                        <div class="pillar-header">
+                            <div class="pillar-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                            </div>
+                            <h3 class="pillar-title">Alcance</h3>
+                        </div>
+                        <p class="pillar-desc">Diversidad de industrias y oportunidades</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- 4 & 5. SERVICIOS -->
+        <!-- SERVICIOS -->
         <section id="servicios" class="stack-panel">
             <div class="services-container">
                 <div class="editorial-header reveal-right">
@@ -1052,7 +1066,6 @@
                 <div class="services-grid">
                     <div class="service-item reveal-right">
                         <div class="service-img-wrapper">
-                            <!-- <img src="L&A/servicio1.jpg" alt="Levantamiento y Apalancamiento"> -->
                             <span class="service-img-placeholder">Imagen Área 01</span>
                         </div>
                         <span class="service-num">01 / CAPITAL</span>
@@ -1062,17 +1075,15 @@
 
                     <div class="service-item reveal-right">
                         <div class="service-img-wrapper">
-                            <!-- <img src="L&A/servicio2.jpg" alt="Fusiones, Adquisiciones y Deuda"> -->
                             <span class="service-img-placeholder">Imagen Área 02</span>
                         </div>
                         <span class="service-num">02 / ESTRATEGIA</span>
                         <h3>Fusiones, Adquisiciones y Deuda</h3>
-                        <p>Diseño de alternativas financieras a la medida, procesos de M&A, monetización de activos y reestructuración eficiente de pasivos empresariales.</p>
+                        <p>Diseño de alternativas financieras a la medida, procesos de M&amp;A, monetización de activos y reestructuración eficiente de pasivos empresariales.</p>
                     </div>
 
                     <div class="service-item reveal-right">
                         <div class="service-img-wrapper">
-                            <!-- <img src="L&A/servicio3.jpg" alt="Evaluación y Riesgo"> -->
                             <span class="service-img-placeholder">Imagen Área 03</span>
                         </div>
                         <span class="service-num">03 / ANÁLISIS</span>
@@ -1248,7 +1259,6 @@
             });
         }
 
-        // ANIMACIÓN REPETIBLE AL ENTRAR Y SALIR DE CADA SECCIÓN
         function triggerSectionAnimations() {
             const windowHeight = window.innerHeight;
             sections.forEach(section => {
